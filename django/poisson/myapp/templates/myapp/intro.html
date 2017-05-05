@@ -1,0 +1,182 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width" />
+      <title>사이트 소개</title>
+      <link rel="stylesheet" href="{% static 'myapp/css/components.css' %}">
+      <link rel="stylesheet" href="{% static 'myapp/css/responsee.css' %}">
+      <!--이거 포함하면 틀 이상해짐
+      <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.theme.css' %}">-->
+      <!-- CUSTOM STYLE -->  
+      <link rel="stylesheet" href="{% static 'myapp/css/template-style.css' %}">
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+      <script type="text/javascript" src="{% static 'myapp/js/jquery-1.8.3.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'myapp/js/jquery-ui.min.js' %}"></script>    
+      <script type="text/javascript" src="{% static 'myapp/js/modernizr' %}"></script>
+      <script type="text/javascript" src="{% static 'myapp/js/responsee.js' %}"></script>   
+      <!--[if lt IE 9]>
+	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <!-- TOP NAV WITH LOGO -->  
+      <header>
+         <nav>
+            <div class="line">
+               <div class="top-nav">              
+                  <div class="logo hide-l">
+                     <a>캡스톤 <br /><strong>5조</strong></a>
+                  </div>                  
+                  <p class="nav-text">Custom menu text</p>
+                  <div class="top-nav s-12 l-5">
+                     <ul class="right top-ul chevron">
+                        <li><a href="../myapp/main.html">메인</a>
+                        </li>
+                        <li><a href="../myapp/intro.html">프로젝트 소개</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <ul class="s-12 l-2">
+                     <li class="logo hide-s hide-m">
+                        <a>KMU Capstone<br /><strong>TEAM 5</strong></a>
+                     </li>
+                  </ul>
+                  <div class="top-nav s-12 l-5">
+                     <ul class="top-ul chevron">
+                        <li><a href="../myapp/webcam.html">카메라...</a>
+                        </li>
+                        <li>
+                           <a href="../myapp/undecided.html">옷...</a>            
+                           <ul>
+                              <li><a>Company 1</a>
+                              </li>
+                              <li><a>Company 2</a>
+                              </li>
+                              <li>
+                                 <a>Company 3</a>             
+                                 <ul>
+                                    <li><a>Company 3-1</a>
+                                    </li>
+                                    <li><a>Company 3-2</a>
+                                    </li>
+                                    <li><a>Company 3-3</a>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul> 
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <section>
+         <div id="head">
+            <div class="line">
+               <h1>ABOUT</h1>
+            </div>
+         </div>
+         <div id="content">
+            <div class="line">
+               <p class="s-12 m-12 l-6 center">국민대학교 캡스톤디자인 프로젝트</p>
+               <h2><br/>COLOR HARMONY</h2>
+               <p class="s-12 m-12 l-8 center"><br/><br/>본 프로젝트는 2017 국민대학교 컴퓨터공학부 캡스톤 디자인 프로젝트의
+               결과물입니다.<br/>
+               코디를 어려워하는 현대인들에게 보다 쉽게 본인의 옷을 코디해 볼 수 있는 웹 페이지를<br/> 제공함으로써 사용자들의 색채 및 패션 감각 증진에 도움을 주기 위한 것입니다.<br/> 이 프로젝트는 두 가지 기능을 제공합니다. <br/>그 중 첫 번째는 웹페이지에서 사용자가 웹캠을 통해 사진을 찍어 원하는 분위기로 사진을 수정할 수 있는 기능입니다. <br/>단어 형식의 분위기(ex. 모던한,귀여운)를 선택하면 그에 따른 컬러 조합이 나오고,<br/>웹캠을 통해 찍은 사진에 선택한 분위기의 색을 입혀서 코디를 해 볼 수 있습니다. <br/>두 번째 기능은 원하는 옷과 분위기 색을 고르면 그에 맞는 코디 이미지를 볼 수 있는 기능입니다. <br/>상의·하의 또는 아우터·하의 이 두 가지 경우 중 하나로 옷을 선택한 후 분위기 단어를 선택하면 <br/>그에 맞는 코디 이미지가 검색됩니다. <br/>이에 따라 사용자들에게 코디를 제안하게 됩니다.
+               </p>
+            </div>
+         </div>
+         <!-- GALLERY -->	
+         <div id="third-block">
+            <div class="line">
+               <h2>COLOR</h2>
+               <p class="subtitile">밑에는 컬러 화려한 사진들 갖다넣을까 아님 비울까
+               </p>
+               <div class="margin">
+                  <div class="s-12 m-6 l-3">
+                     <img src="img/first-small.jpg">      
+                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                     </p>
+                  </div>
+                  <div class="s-12 m-6 l-3">
+                     <img src="img/second-small.jpg">      
+                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                     </p>
+                  </div>
+                  <div class="s-12 m-6 l-3">
+                     <img src="img/third-small.jpg">      
+                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                     </p>
+                  </div>
+                  <div class="s-12 m-6 l-3">
+                     <img src="img/fourth-small.jpg">      
+                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="fourth-block">
+            <div class="line">
+               <div id="owl-demo2" class="owl-carousel owl-theme">
+                  <div class="item">
+                     <h2>Amazing responsive template</h2>
+                     <p class="s-12 m-12 l-8 center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                     </p>
+                  </div>
+                  <div class="item">
+                     <h2>Responsive components</h2>
+                     <p class="s-12 m-12 l-8 center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                     </p>
+                  </div>
+                  <div class="item">
+                     <h2>Retina ready</h2>
+                     <p class="s-12 m-12 l-8 center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- FOOTER -->   
+      <footer>
+         <div class="line">
+            <div class="s-12 l-6">
+               <p>Copyright 2015, Vision Design - graphic zoo
+               </p>
+            </div>
+            <div class="s-12 l-6">
+               <p class="right">
+                  <a class="right" href="http://www.myresponsee.com" title="Responsee - lightweight responsive framework">Design and coding by Responsee Team</a>
+               </p>
+            </div>
+         </div>
+      </footer>
+      <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>   
+      <script type="text/javascript">
+         jQuery(document).ready(function($) {  
+           $("#owl-demo").owlCarousel({
+         	slideSpeed : 300,
+         	autoPlay : true,
+         	navigation : false,
+         	pagination : false,
+         	singleItem:true
+           });
+           $("#owl-demo2").owlCarousel({
+         	slideSpeed : 300,
+         	autoPlay : true,
+         	navigation : false,
+         	pagination : true,
+         	singleItem:true
+           });
+         });	
+          
+      </script> 
+   </body>
+</html>

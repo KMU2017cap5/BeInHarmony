@@ -1,0 +1,352 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width" />
+<title>옷고르기</title>
+<link rel="stylesheet" href="{% static 'myapp/css/components.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/css/responsee.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/css/template-style.css' %}">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="{% static 'myapp/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'myapp/js/responsee.js' %}"></script>
+
+<!-- Word box -->
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/css/jqcloud.css' %}" />
+<script type="text/javascript" src="{% static 'myapp/js/jqcloud.js' %}"></script>
+<script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.0.4.js' %}"></script>
+
+<!-- Slider -->
+<link rel="stylesheet" href="{% static 'myapp/css/flexslider.css' %}">
+<script type="text/javascript" src="{% static 'myapp/js/jquery.flexslider.js' %}"></script>    
+<script type="text/javascript" src="{% static 'myapp/js/modernizr' %}"></script>
+
+
+<!--[if lt IE 9]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]--> 
+
+<!-- SLIDER SHOW-->
+<script type="text/javascript" charset="utf-8">
+   $(window).load(function() {
+      $('#slider_top').flexslider({
+         animation: "slide"})
+      $('#slider_bottom').flexslider({
+         animation: "slide"})
+      $('#slider_outerwear').flexslider({
+         animation: "slide"})
+      $('#slider_dress').flexslider({
+         animation: "slide"});
+   });
+</script>
+
+<style>
+/* Slide Button*/
+/* Caption*/
+  .flex-caption {
+    width: 100%; padding: 2%;  left: 0; bottom: 0;
+    background: rgba(0,0,0,.5); color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+    font-size: 12px;  line-height: 18px;
+  }
+
+/* slide size*/
+.flexslider {left: 120px;
+  margin: 50px;   text-align: center;
+  /*width:  150px;  height: 190px;*/
+  width:  140px;  height: 165px;}
+
+#slider_top{
+  position: relative;  left: 0px; top: 0px; margin: 0; }
+
+#slider_bottom{
+  position: relative;  left: 0px; top: 0px; margin: 0;}
+
+#slider_outerwear{
+  position: relative;  left: 0px; top:  0px;  margin: 0;}
+
+#slider_dress{
+  position: relative;  left: 0px; top:  0px;  margin: 0;}
+
+.flex-direction-nav a { 
+   width: 30px; height: 30px; margin: -20px 0 0; display: block; 
+   background: url(/static/myapp/img/bg_direction_nav.png) no-repeat 0 0; 
+   position: absolute; top: 50%; z-index: 10; cursor: pointer; 
+}
+
+
+/* Button */
+.btn1{
+   position:relative; left: 30px;   top : -20px; 
+   width: 120px;  height:120px; }
+
+.btn2{
+   position:relative;  left: 30px; top : -20px;
+   width: 120px;  height:120px;} 
+
+.btn3{
+   position:relative; left: 30px;   top : -20px; 
+   width: 120px;  height:120px;} 
+
+.btn4{
+   position:relative; left: 30px;   top : -20px;;
+   width: 120px;  height:120px;} 
+
+/* Word cloud */
+div.jqcloud span.vertical {
+-webkit-writing-mode: vertical-rl;
+writing-mode: tb-rl;
+}
+
+#word_box{
+    position: relative;  left: 350px; top:   -745px;
+}
+
+#category{
+  border: none;
+  width:  400px; 
+  height: 760px; 
+}
+#row{
+  border: none;
+height: 190px;
+background-color: white;
+}
+
+#category_width{
+  border: none;
+  width:  150px;
+}
+
+#slide_width{
+  border: none;
+  width: 200px;
+}
+
+</style>
+</head>
+
+<body>
+   <!-- TOP NAV WITH LOGO -->  
+<header>
+<nav>
+<div class="line">
+   <div class="top-nav">              
+      <div class="logo hide-l">
+         <a href="../design/">캡스톤<br /><strong>5조</strong></a>
+      </div>                  
+      <p class="nav-text">Custom menu text</p>
+      <div class="top-nav s-12 l-5">
+         <ul class="right top-ul chevron">
+            <li><a href="../myapp/main.html">메인</a></li>
+            <li><a href="../myapp/intro.html">프로젝트 소개</a></li>
+         </ul>
+      </div>
+      <ul class="s-12 l-2">
+         <li class="logo hide-s hide-m">
+            <a>KMU Capstone<br /><strong>TEAM 5</strong></a></li>
+      </ul>
+      <div class="top-nav s-12 l-5">
+         <ul class="top-ul chevron">
+            <li><a href="../myapp/webcam.html">카메라</a></li>
+            <li>
+               <a href="../myapp/undecided.html">옷</a></li>
+         </ul> 
+      </div>
+   </div>
+</div>
+</nav>
+</header>
+
+<section>
+<div id="head">
+   <div class="line">
+      <h1>COLOR CHANGE</h1>
+   </div>
+</div>
+<div id="content">
+<div class="line">
+                            
+   <!-- 흰 네모 -->
+   <!-- "{% static 'myapp/img/top.png' %}" -->
+
+<table id="category"> 
+  <tbody>
+    <tr id="row"> 
+    <td id="category_width"><img id="top" class="btn1" src="{% static 'myapp/img/top.png' %}"></td> 
+    <td id="slide_width"><div id="slider_top" class="flexslider">
+     <ul class="slides">
+      
+       <li><img src="{% static 'myapp/img/camiTop.png' %}" alt="cami top" />
+         <p class="flex-caption">Cami Top</p></li>
+       <li><img src="{% static 'myapp/img/longSleevedTShirt.png' %}" alt="long sleeved t-shirt" />
+         <p class="flex-caption">Long sleeved T-shirt</p></li>
+       <li><img src="{% static 'myapp/img/rollNeck.png' %}" alt="roll neck" />
+         <p class="flex-caption">Roll neck</p></li>
+       <li><img src="{% static 'myapp/img/shirt.png' %}" alt="shirt" />
+         <p class="flex-caption">Shirt</p></li>
+
+     </ul>
+   </div></td>  
+    </tr> 
+
+    <tr id="row"> 
+    <td id="category_width"><img id="bottom" class="btn2" src="{% static 'myapp/img/bottom.png' %}"></td> 
+    <td id="slide_width"><div id="slider_bottom" class="flexslider">
+     <ul class="slides">
+       <li><img src={% static 'myapp/img/skinnyPants.png' %} alt="skinny pants" />
+       <p class="flex-caption">skinny pants</p></li>
+       <li><img src={% static 'myapp/img/aLineSkirt.png' %} alt="a line skirt" />
+       <p class="flex-caption">A line skirt</p></li>
+     </ul>
+   </div></td>  
+    </tr> 
+
+    <tr id="row"> 
+    <td id="category_width"><img id="outerwear" class="btn3" src="{% static 'myapp/img/outerwear.png' %}"></td> 
+    <td id="slide_width"><div id="slider_outerwear" class="flexslider">
+     <ul class="slides">
+       <li><img src={% static 'myapp/img/leatherJacket.png' %} alt="leather jacket" />
+       <p class="flex-caption">leather jacket</p></li>
+       <li><img src={% static 'myapp/img/denimJacket.png' %} alt="denim jacket" />
+       <p class="flex-caption">denim jacket</p></li>
+     </ul>
+   </div></td>  
+    </tr> 
+
+    <tr id="row"> 
+    <td id="category_width"><img id="dress" class="btn4" src="{% static 'myapp/img/dress.png' %}"></td> 
+    <td id="slide_width"> <div id="slider_dress" class="flexslider">
+     <ul class="slides">
+       <li><img src={% static 'myapp/img/bustierDress.png' %} alt="bustier dress" />
+       <p class="flex-caption">bustier dress</p></li>
+       <li><img src={% static 'myapp/img/stripeDress.png' %} alt="stripe dress" />
+       <p class="flex-caption">stripe dress</p></li>
+     </ul>
+   </div></td>  
+    </tr> 
+  </tbody>
+</table>  
+
+   <div>
+   
+   
+   
+   
+
+  <div id="word_box">
+      <!-- <h3>jQCloud Example</h3>
+      <p> Please choose the word that desired style </p> -->
+      <div id="words" style="width: 300px; height: 300px; border: 1px solid #ccc;"></div>
+  </div>
+
+   </div>
+
+   
+
+   
+
+   
+
+  
+
+
+<!-- SLIDER FUNCTION -->
+   <script> 
+   // 처음 loading 시 숨김
+   $(document).ready(function(){
+     $("div#slider_top").toggle();
+     $("div#slider_bottom").toggle();
+     $("div#slider_outerwear").toggle();
+     $("div#slider_dress").toggle();
+
+   })
+
+   // 카테고리 click시 슬라이드 show
+   $("img#top").click(function () { 
+       $("div#slider_top").toggle("slow"); 
+
+   })
+
+   $("img#bottom").click(function () {  
+       $("div#slider_bottom").toggle("slow"); 
+
+   })
+
+   $("img#outerwear").click(function () { 
+       $("div#slider_outerwear").toggle("slow"); 
+
+   })
+
+   $("img#dress").click(function () { 
+       $("div#slider_dress").toggle("slow"); 
+
+   }); 
+   </script>
+
+<script type="text/javascript">
+  var word_list = [
+    {text: "맑은", weight: 4},
+    {text: "지적인", weight: 2.5, html: {"class": "vertical"}},
+    {text: "화려한", weight: 2.5},
+    {text: "수수한", weight: 2.5, html: {"class": "vertical"}},
+    {text: "스포티한", weight: 2},
+    {text: "단정한", weight: 3},
+    {text: "우아한", weight: 3},
+    {text: "강인한", weight: 2, html: {"class": "vertical"}},
+  ];
+  $(function() {
+    $("#words").jQCloud(word_list);
+  });
+</script>
+
+</div>
+</div>
+
+
+<div id="fourth-block">
+   <div class="line">
+      <div id="owl-demo2" class="owl-carousel owl-theme">
+      <!-- 아래 남색 네모 -->
+        
+         
+      </div>
+   </div>
+</div>
+</section>
+<!-- FOOTER -->   
+<footer>
+   <div class="line">
+     <!-- 하늘색 바 --> 
+      
+   </div>
+</footer>
+   
+<script type="text/javascript">
+   jQuery(document).ready(function($) {  
+     $("#owl-demo").owlCarousel({
+    slideSpeed : 300,
+    autoPlay : true,
+    navigation : false,
+    pagination : false,
+    singleItem:true
+     });
+     $("#owl-demo2").owlCarousel({
+    slideSpeed : 300,
+    autoPlay : true,
+    navigation : false,
+    pagination : true,
+    singleItem:true
+     });
+   });  
+</script> 
+
+
+</body>
+</html>

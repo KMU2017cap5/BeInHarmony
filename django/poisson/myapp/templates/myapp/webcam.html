@@ -1,0 +1,401 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width" />
+      <title>사이트 소개</title>
+      <link rel="stylesheet" href="{% static 'myapp/css/components.css' %}">
+      <link rel="stylesheet" href="{% static 'myapp/css/responsee.css' %}">
+      <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+      <!--이거 포함하면 틀 이상해짐
+      <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.theme.css' %}">-->
+      <!-- CUSTOM STYLE -->  
+      <link rel="stylesheet" href="{% static 'myapp/css/template-style.css' %}">
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+      <script type="text/javascript" src="{% static 'myapp/js/jquery-1.8.3.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'myapp/js/jquery-ui.min.js' %}"></script> 
+      <script type="text/javascript" src="{% static 'myapp/js/modernizr' %}"></script>
+      <script type="text/javascript" src="{% static 'myapp/js/responsee.js' %}"></script>  
+      <!-- Word box -->
+     <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/jqcloud.css' %}" />
+     <script type="text/javascript" src="{% static 'myapp/js/jqcloud.js' %}"></script>
+     <script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.0.4.js' %}"></script>
+      <!--[if lt IE 9]>
+         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+      <![endif]-->
+  <style> 
+    video, img {
+      max-width: 70%;
+      max-height: 70%;
+    }
+  </style>
+</head>
+<body>
+   <header>
+         <nav>
+            <div class="line">
+               <div class="top-nav">              
+                  <div class="logo hide-l">
+                     <a>캡스톤 <br /><strong>5조</strong></a>
+                  </div>                  
+                  <p class="nav-text">Custom menu text</p>
+                  <div class="top-nav s-12 l-5">
+                     <ul class="right top-ul chevron">
+                        <li><a href="../myapp/main.html">메인</a>
+                        </li>
+                        <li><a href="../myapp/intro.html">프로젝트 소개</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <ul class="s-12 l-2">
+                     <li class="logo hide-s hide-m">
+                        <a>KMU Capstone<br /><strong>TEAM 5</strong></a>
+                     </li>
+                  </ul>
+                  <div class="top-nav s-12 l-5">
+                     <ul class="top-ul chevron">
+                        <li><a href="../myapp/webcam.html">카메라</a>
+                        </li>
+                        <li>
+                           <a href="../myapp/undecided.html">옷</a>            
+                           <ul>
+                              <li><a>Company 1</a>
+                              </li>
+                              <li><a>Company 2</a>
+                              </li>
+                              <li>
+                                 <a>Company 3</a>             
+                                 <ul>
+                                    <li><a>Company 3-1</a>
+                                    </li>
+                                    <li><a>Company 3-2</a>
+                                    </li>
+                                    <li><a>Company 3-3</a>
+                                    </li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul> 
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+
+   <section>
+         <div id="head">
+            <div class="line">
+               <h1>COLOR CHANGE</h1>
+            </div>
+         </div>
+         <!--
+         <div id="content">
+            <div class="line">
+               <div style="text-align: center; font-size: 70pt; font-family: 'mfg';">
+               <p class="titile">Color Change</p>
+               </div> 
+            </div>
+         </div>
+         -->        
+         <div id="third-block">
+            <div class="line">
+               <div class="margin">
+                  <div class="s-12 m-12 l-6">
+                     <video autoplay></video>     
+                     <p>비디오 레이아웃</p>                
+                  </div>
+                  <!-- 캡쳐 함수 -->
+                  <script type="text/javascript">   
+                   function takeSnapshot() {
+                     var img = document.querySelector('img') || document.createElement('img');
+                     var context;
+                     var width = video.offsetWidth
+                     , height = video.offsetHeight;
+                     
+                     canvas = canvas || document.createElement('canvas');
+                     canvas.width = width;
+                     canvas.height = height;
+                     context = canvas.getContext('2d');
+                     context.drawImage(video, 0, 0, width, height);
+                     //img.src = canvas.toDataURL('image/png');
+                  }         
+              </script>                   
+                     <body onload="init()">
+                    <canvas id="can" ><canvas id="inner"></canvas></canvas>
+                    <script type="text/javascript">
+                       var video = document.querySelector('video');
+                       var cv = document.getElementById("can");
+                     cv.width = video.offsetWidth;
+                     cv.height = video.offsetHeight;
+                     cv.style = "border:1px solid;"         
+                    </script>
+                    <div style="position:relative;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>        
+                    <div style="position:relative;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>      
+                    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">                 
+                </body>
+                <p>캡쳐 화면</p> 
+               </div>               
+            </div>
+         </div>
+         <!-- 타이머 버튼 -->
+        <div id="fourth-block">
+          <section class="grey">
+              <select id = "timerValue">
+              	 <option value="1">1</option>
+                 <option value="3">3</option>
+                 <option value="5">5</option>
+                 <option value="7">7</option>
+             </select>
+             <input type="button" class="contact-button" id="captureBtn" value="사진 찍기" />
+               <input type="button" class="contact-button" value="선 지우기" onclick="erase()"/>
+             <input type="button" class="contact-button" id="pickEndBtn" value="의류 색상 클릭하기" />              
+          </section>
+       </div>
+       <!-- 타이머 함수 -->                
+      <script type="text/javascript">            
+          var t = document.getElementById('captureBtn');
+          var video = document.querySelector('video'), canvas;                    
+         // 사진찍기 클릭 시 설정 시간 확인 후 사진 찍기
+         t.addEventListener('click',function(){
+            // 선택된 값 찾기
+             var sVal = document.getElementById('timerValue')
+             var strUser = sVal.options[sVal.selectedIndex].value;
+
+             // 타이머
+            if(strUser == '1') setTimeout(takeSnapshot, 100);
+            else if(strUser == '3') setTimeout(takeSnapshot, 3000);
+            else if(strUser == '5') setTimeout(takeSnapshot, 5000);
+            else if(strUser == '7') setTimeout(takeSnapshot, 7000);
+         })            
+      </script>       
+    </section>
+
+    <script type="text/javascript">
+     var word_list = [
+       {text: "맑은", weight: 3.5},
+       {text: "지적인", weight: 2.5, html: {"class": "vertical"}},
+       {text: "화려한", weight: 2.5},
+       {text: "수수한", weight: 2.5, html: {"class": "vertical"}},
+       {text: "스포티한", weight: 2},
+       {text: "단정한", weight: 3},
+       {text: "우아한", weight: 3},
+       {text: "강인한", weight: 2, html: {"class": "vertical"}},
+     ];
+     $(function() {
+       $("#words").jQCloud(word_list);
+     });
+    </script>
+
+    <div id="words" style="width: 300px; height: 300px; border: 1px solid #ccc;"></div>
+    <script>      
+      // 비디오 스트리밍
+      'use strict';
+      var video = document.querySelector('video')
+      , canvas;
+      // use MediaDevices API
+      if (navigator.mediaDevices) {
+         // access the web cam
+         navigator.mediaDevices.getUserMedia({video: true})
+         // permission granted:
+         .then(function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+         })
+         // permission denied:
+         .catch(function(error) {
+            document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+         });
+      }      
+    </script>
+    
+    <script type="text/javascript">
+       // 캔버스 드로잉
+       var canvas, ctx, flag = false,
+           prevX = 0,
+           currX = 0,
+           prevY = 0,
+           currY = 0,
+           dot_flag = false;
+
+       // 옷 컬러 선택 단계 확인
+       var checkTop = false;
+       var checkBtm = false;
+       var pickTop = false;
+       var pickBtm = false;
+       // 컬러 픽 버튼
+       var pBtn = document.getElementById('pickEndBtn');
+
+       var x = "green",
+           y = 3;
+       
+       function init() {
+           canvas = document.getElementById('can');
+           ctx = canvas.getContext("2d");
+           w = canvas.width;
+           h = canvas.height;
+       
+           canvas.addEventListener("mousemove", function (e) {
+               findxy('move', e)
+           }, false);
+           canvas.addEventListener("mousedown", function (e) {
+               findxy('down', e)
+           }, false);
+           canvas.addEventListener("mouseup", function (e) {
+               findxy('up', e)
+           }, false);
+           canvas.addEventListener("mouseout", function (e) {
+               findxy('out', e)
+           }, false);
+
+         minican = document.getElementById('can');
+         minican.width = 30;
+         minican.height = 30;
+         minictx = minican.getContext("2d");
+
+         minican2 = document.getElementById('can');
+         minican2.width = 30;
+         minican2.height = 30;
+         minictx2 = minican2.getContext("2d");
+
+         pBtn.disabled = 'true';
+
+       }
+       
+       function color(obj) {
+           switch (obj.id) {
+               case "green":
+                   x = "green";
+                   break;
+               case "yellow":
+                   x = "yellow";
+                   break;
+               /*case "white":
+                   x = "white";
+                   break;*/
+           }
+           //if (x == "white") y = 14;
+           //else y = 2;
+          y = 3;
+       }
+       
+       function draw() {
+           ctx.beginPath();
+           ctx.moveTo(prevX, prevY);
+           ctx.lineTo(currX, currY);
+           ctx.strokeStyle = x;
+           ctx.lineWidth = y;
+           ctx.stroke();
+           ctx.closePath();
+       }
+       
+       function erase() {
+           var m = confirm("지우시겠습니까?");
+           if (m) {
+               ctx.clearRect(0, 0, w, h);
+               document.getElementById("canvasimg").style.display = "none";
+           }
+       }
+       
+       function save() {
+           document.getElementById("canvasimg").style.border = "2px solid";
+           var dataURL = canvas.toDataURL();
+           document.getElementById("canvasimg").src = dataURL;
+           document.getElementById("canvasimg").style.display = "inline";
+       }
+
+       // initialize mouse position to make closed curve
+       var initX = 0;
+       var initY = 0;     
+
+       function findxy(res, e) {
+           if (res == 'down') {
+               prevX = currX;
+               prevY = currY;
+               currX = e.clientX - canvas.offsetLeft;
+               currY = e.clientY - canvas.offsetTop;
+              
+               flag = true;
+               dot_flag = true;
+               if (dot_flag) {
+                   ctx.beginPath();
+                   ctx.fillStyle = x;
+                   ctx.fillRect(currX, currY, 3, 3);
+                   ctx.closePath();
+                   dot_flag = false;
+               }
+               if(initX == 0 && initY == 0){
+                  initX = currX;
+                  initY = currY;
+               }
+               var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
+               console.log(pixelData)
+
+               // show picked color
+               if(pickTop){
+                  minictx.beginPath();
+                  minictx.fillStyle = 'rgb('+
+                   pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+                  minictx.fillRect(10,10,20,20);
+                  minictx.closePath();
+                  pickTop = false;
+                  pickBtm = true;
+                 }
+               else if(pickBtm){
+                 minictx2.beginPath();
+                 minictx2.fillStyle = 'rgb('+
+                  pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+                 minictx2.fillRect(10,30,20,20);
+                 minictx2.closePath();
+                 pickBtm = false;
+
+               }
+
+           }        
+           else if (res == 'up') {
+             ctx.beginPath();
+             ctx.moveTo(currX, currY);
+             ctx.lineTo(initX, initY);
+             ctx.stroke();
+
+             // initialize position
+             initX = 0;
+             initY = 0;
+             flag = false;
+
+             // 상하의 영역 그리기 끝났을 시 컬러 피커 버튼 활성화             
+             if(x == "green") { 
+                checkTop = true; 
+                console.log("top check");
+             }
+             else if(x == "yellow") { 
+                checkBtm = true; 
+                console.log("bottom check"); 
+             }
+
+             if(checkTop && checkBtm){ // 둘 다 그렸을 시
+                pBtn.removeAttribute("disabled"); // 버튼 활성화
+                pickTop = true;
+                checkTop = checkBtm = false;
+             }
+
+           }
+           else if (res == "out") {
+             flag = false;
+           }
+           else if (res == 'move') {
+             if (flag) {
+               prevX = currX;
+               prevY = currY;
+               currX = e.clientX - canvas.offsetLeft;
+               currY = e.clientY - canvas.offsetTop;
+               draw();
+             }
+           }
+       }
+    </script>
+</body>
+</html>
