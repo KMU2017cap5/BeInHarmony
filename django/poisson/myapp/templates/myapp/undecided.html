@@ -1,4 +1,3 @@
-
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -6,31 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" />
-<title>옷고르기</title>
+<title>COLOR HARMONY - COORDINATION SEARCH</title>
+<!-- 전체 UI css-->
+<link rel="stylesheet" href="{% static 'myapp/css/undecided.css' %}">
+
 <link rel="stylesheet" href="{% static 'myapp/css/components.css' %}">
 <link rel="stylesheet" href="{% static 'myapp/css/responsee.css' %}">
 <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
 <link rel="stylesheet" href="{% static 'myapp/css/template-style.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/css/webcamButton.css' %}">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
-<script type="text/javascript" src="{% static 'myapp/js/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'myapp/js/responsee.js' %}"></script>
 
+
+<!-- Preload -->
+<script type="text/javascript" src="{% static 'myapp/js/jquery_pre.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'myapp/js/modernizr_pre.js' %}"></script>
 <!-- Word box -->
 <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/jqcloud.css' %}" />
-<script type="text/javascript" src="{% static 'myapp/js/jqcloud.js' %}"></script>
-<script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.0.4.js' %}"></script>
+<script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.12.4.js' %}"></script>
+<script type="text/javascript" src="{% static 'myapp/js/jqcloud-plugin.js' %}"></script>
 
 <!-- Slider -->
 <link rel="stylesheet" href="{% static 'myapp/css/flexslider.css' %}">
 <script type="text/javascript" src="{% static 'myapp/js/jquery.flexslider.js' %}"></script>    
-<script type="text/javascript" src="{% static 'myapp/js/modernizr' %}"></script>
-
-
-<!--[if lt IE 9]>
-   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<![endif]--> 
+<script type="text/javascript" src="{% static 'myapp/js/modernizr.js' %}"></script>
 
 <!-- SLIDER SHOW-->
 <script type="text/javascript" charset="utf-8">
@@ -46,22 +46,24 @@
    });
 </script>
 
-<style>
-/* Slide Button*/
+<style type="text/css">
+    /* Slide Button*/
 /* Caption*/
   .flex-caption {
     width: 100%; padding: 2%;  left: 0; bottom: 0;
     background: rgba(0,0,0,.5); color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,.3);
     font-size: 12px;  line-height: 18px;
+    margin-top: -5px;
   }
 
 /* slide size*/
-.flexslider {left: 120px;
-  margin: 50px;   text-align: center;
+.flexslider {
+  text-align: center;
   /*width:  150px;  height: 190px;*/
   width:  140px;  height: 165px;}
 
+/* 없으면 슬라이드 생길때, 없어질 때 버튼 위치가 달라짐*/
 #slider_top{
   position: relative;  left: 0px; top: 0px; margin: 0; }
 
@@ -74,29 +76,30 @@
 #slider_dress{
   position: relative;  left: 0px; top:  0px;  margin: 0;}
 
+/* slide direction button*/
 .flex-direction-nav a { 
    width: 30px; height: 30px; margin: -20px 0 0; display: block; 
    background: url(/static/myapp/img/bg_direction_nav.png) no-repeat 0 0; 
    position: absolute; top: 50%; z-index: 10; cursor: pointer; 
 }
 
-
-/* Button */
-.btn1{
+/* Button - TOP, BOTTOM, OUTER WEAR, DRESS */
+.btn{
    position:relative; left: 30px;   top : -20px; 
    width: 120px;  height:120px; }
 
-.btn2{
-   position:relative;  left: 30px; top : -20px;
-   width: 120px;  height:120px;} 
+/* 선택한 디자인 python으로 넘겨주려고 input type으로 바꿈 */
+input{
+  border: none;
+  background-color: white;
+  outline: 0;
+}
 
-.btn3{
-   position:relative; left: 30px;   top : -20px; 
-   width: 120px;  height:120px;} 
+.slide_img{
+  width: 130px;
+  height: 135px;
 
-.btn4{
-   position:relative; left: 30px;   top : -20px;;
-   width: 120px;  height:120px;} 
+}
 
 /* Word cloud */
 div.jqcloud span.vertical {
@@ -104,70 +107,256 @@ div.jqcloud span.vertical {
 writing-mode: tb-rl;
 }
 
-#word_box{
-    position: relative;  left: 350px; top:   -745px;
-}
+/*#word_box{
+    position: relative;  */
+    /*left: 350px;*/ 
+    /*top:   -745px;*/
+/*}*/
 
 #category{
   border: none;
-  width:  400px; 
-  height: 760px; 
+  margin-left: 200px;
+  margin-top: -80px;
+  table-layout:fixed;
 }
-#row{
-  border: none;
-height: 190px;
+
+#category tr{
+  /* 없으면 줄 번갈아 가면서 색들어감 + 슬라이스를 누르면 높이가 계속 바뀜*/
+/*border: 1px solid green;*/
+border: none;
 background-color: white;
 }
 
-#category_width{
+#category td{ 
   border: none;
-  width:  150px;
+  /*border: 1px solid black;*/
+  height: 190px;
+}
+
+#category_width{
+  /*border: 1px solid blue;*/
+  border: none;
+  width:  165px;
 }
 
 #slide_width{
+  /*border: 1px solid green;*/
   border: none;
-  width: 200px;
 }
 
+/* COLOR BOX*/
+#color_box_two_color{
+  /*border: 1px solid red;*/
+  margin-top: -100px;
+  /*height: 300px;*/
+  height: auto;
+  border: none;
+
+}
+#color_box_two_color tr{
+  background-color: white;
+  height: auto;
+  /*max-height: 20px;*/
+  overflow: hidden;
+}
+
+#color_box_two_color td{
+  max-width: 20px;
+  height: 70px;
+  /*border: 1px solid red;*/
+  border: none;
+}
+
+/* color_img겹치려고 만듦*/
+#color_box_two_color div{
+  position: relative;
+}
+
+
+#color_box_two_color input{
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 6px;
+  
+}
+
+#color_box_one_color{
+  /*border: 1px solid green;*/
+  margin-top: -280px;
+  /*height: 300px;*/
+  height: auto;
+  border: none;
+
+}
+#color_box_one_color tr{
+  background-color: white;
+  height: auto;
+  /*max-height: 20px;*/
+  overflow: hidden;
+  border: none;
+}
+
+#color_box_one_color td{
+  max-width: 20px;
+  height: 70px;
+  /*border: 1px solid green;*/
+ 
+}
+
+/* color_img겹치려고 만듦*/
+#color_box_one_color div{
+  position: relative;
+}
+
+
+#color_box_one_color input{
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 30px
+}
+
+/*design_box - 선택한 옷 디자인 이미지를 출력*/
+.design_box{
+  width: 380px; height: 550px;
+  border: 1px solid #d3d3d3;
+}
+
+.design_box p{
+  text-align: center;
+}
+
+#design_top_box{
+  /*border: 1px solid #d3d3d3;*/
+  margin:auto;  margin-top: 40px;
+  width: 60%;
+}
+
+.design_top_box div{
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.design_top_box img{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0; max-width: 100%; height: auto;
+}
+
+#design_outerwear_box{
+  /*border: 1px solid green;*/
+  width: 60%;
+  margin:auto;  margin-top: -220px;
+}
+
+.design_outerwear_box div{
+  position: relative;
+   padding-top: 100%;
+  overflow: hidden;
+}
+
+.design_outerwear_box img{
+  position: absolute;
+}
+
+#design_bottom_box{
+  /*border: 1px solid green;*/
+  width: 60%;
+  height: 225px;
+}
+
+.design_bottom_box div{
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.design_bottom_box img{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0; max-width: 100%; height: auto;
+}
+
+#design_dress_box{
+  /*border: 1px solid red;*/
+  border:none;
+  margin:auto;  margin-top: -380px;
+  width: 70%;
+  height: 263px;
+}
+
+.design_dress_box div{
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.design_dress_box img{
+  position: absolute;
+  margin-top: 50px;
+  top: 0; left: 0; right: 0; bottom: 0; max-width: 100%; height: auto;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url({% static 'myapp/img/Preloader_8.gif' %}) center no-repeat #fff;
+}
 </style>
+
 </head>
 
 <body>
+<!-- Preloading -->
+<div class="se-pre-con"></div>
+<script type="text/javascript">
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut(2000);
+  });
+</script>
+
    <!-- TOP NAV WITH LOGO -->  
 <header>
 <nav>
-<div class="line">
-   <div class="top-nav">              
-      <div class="logo hide-l">
-         <a href="../design/">캡스톤<br /><strong>5조</strong></a>
-      </div>                  
-      <p class="nav-text">Custom menu text</p>
-      <div class="top-nav s-12 l-5">
-         <ul class="right top-ul chevron">
-            <li><a href="../myapp/main.html">메인</a></li>
-            <li><a href="../myapp/intro.html">프로젝트 소개</a></li>
-         </ul>
-      </div>
-      <ul class="s-12 l-2">
-         <li class="logo hide-s hide-m">
-            <a>KMU Capstone<br /><strong>TEAM 5</strong></a></li>
-      </ul>
-      <div class="top-nav s-12 l-5">
-         <ul class="top-ul chevron">
+  <div class="line">
+     <div class="top-nav">              
+        <div class="logo hide-l">
+           <a>캡스톤 <br /><strong>5조</strong></a>
+        </div>                  
+        <p class="nav-text">Custom menu text</p>
+        <div class="top-nav s-12 l-5">
+           <ul class="right top-ul chevron">
+              <li><a href="../myapp/main.html">메인</a>
+              </li>
+              <li><a href="../myapp/intro.html">프로젝트 소개</a>
+              </li>
+           </ul>
+        </div>
+        <ul class="s-12 l-2">
+           <li class="logo hide-s hide-m">
+              <a>KMU Capstone<br /><strong>TEAM 5</strong></a>
+           </li>
+        </ul>
+        <div class="top-nav s-12 l-5">
+           <ul class="top-ul chevron">
+            <li><a href="../myapp/undecided.html">코디 검색</a></li>
             <li><a href="../myapp/webcam.html">카메라</a></li>
-            <li>
-               <a href="../myapp/undecided.html">옷</a></li>
-         </ul> 
-      </div>
-   </div>
-</div>
+           </ul> 
+        </div>
+     </div>
+  </div>
 </nav>
 </header>
 
 <section>
 <div id="head">
    <div class="line">
-      <h1>COLOR CHANGE</h1>
+      <h1>COORDINATION SEARCH</h1>
    </div>
 </div>
 <div id="content">
@@ -178,175 +367,1193 @@ background-color: white;
 
 <table id="category"> 
   <tbody>
-    <tr id="row"> 
-    <td id="category_width"><img id="top" class="btn1" src="{% static 'myapp/img/top.png' %}"></td> 
+    <tr id="row_color" > 
+    <td id="category_width">
+    <input type="image"  id="category_top" class="btn" src="{% static 'myapp/img/top.png' %}"/>
+    </td> 
     <td id="slide_width"><div id="slider_top" class="flexslider">
      <ul class="slides">
-      
-       <li><img src="{% static 'myapp/img/camiTop.png' %}" alt="cami top" />
-         <p class="flex-caption">Cami Top</p></li>
-       <li><img src="{% static 'myapp/img/longSleevedTShirt.png' %}" alt="long sleeved t-shirt" />
+       <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/long_sleeved_t_shirt.png' %}" alt="long_sleeved_t_shirt" />
          <p class="flex-caption">Long sleeved T-shirt</p></li>
-       <li><img src="{% static 'myapp/img/rollNeck.png' %}" alt="roll neck" />
-         <p class="flex-caption">Roll neck</p></li>
-       <li><img src="{% static 'myapp/img/shirt.png' %}" alt="shirt" />
+       <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/shirt_.png' %}" alt="shirt" />
          <p class="flex-caption">Shirt</p></li>
+      <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/blouse.png' %}" alt="blouse" />
+         <p class="flex-caption">Blouse</p></li>
+         <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/hoody.png' %}" alt="hoody" />
+         <p class="flex-caption">Hoody</p></li>
+         <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/sweatshirt.png' %}" alt="sweatshirt" />
+         <p class="flex-caption">Sweatshirt</p></li>
+         <li><input type="image" id="top" class="slide_img" src="{% static 'myapp/img/t_shirt.png' %}" alt="t_shirt" />
+         <p class="flex-caption">T-shirt</p></li>
+       </li>
 
      </ul>
    </div></td>  
+
+   <!-- WORD BOX -->
+  <td rowspan="2" ><div id="word_box">
+      <!--<h3>jQCloud Example</h3>-->
+      <!--<p> <font size="4">Please choose the word that desired style </p> <br>-->
+      <div id="words" style="width: 400px; height: 360px; border: 1px solid #ccc;"></div>
+  </div>
+  </td>
+
+    <!-- DESIGN BOX-->
+   <td rowspan="3" style="width: 400px">
+     <div class="design_box">
+       <div id="design_top_box">
+          <div><p><img id="blouse" class="design_top" src="{% static 'myapp/img/blouse.png' %}" alt="blouse" /></p></div>
+          <div><p><img id="shirt" class="design_top" src="{% static 'myapp/img/shirt_.png' %}" alt="shirt" /></p></div>
+          <div><p><img id="long_sleeved_t_shirt" class="design_top" src="{% static 'myapp/img/long_sleeved_t_shirt.png' %}" alt="long sleeved t shirt" /></p></div>
+          <div><p><img id="sweatshirt" class="design_top" src="{% static 'myapp/img/sweatshirt.png' %}" alt="sweatshirt" /></p></div>
+          <div><p><img id="t_shirt" class="design_top" src="{% static 'myapp/img/t_shirt.png' %}" alt="t shirt" /></p></div>
+           <div><p><img id="hoody" class="design_top" src="{% static 'myapp/img/hoody.png' %}" alt="hoody" /></p></div>
+       </div>
+
+
+       <div id="design_outerwear_box">
+        <div><p><img id="denim_jacket" class="design_outerwear" src="{% static 'myapp/img/denim_jacket.png' %}" alt="denim jacket" /></p></div>
+        <div><p><img id="cardigan" class="design_outerwear" src="{% static 'myapp/img/cardigan.png' %}" alt="cardigan" /></p></div>
+        <div><p><img id="blazer" class="design_outerwear" src="{% static 'myapp/img/blazer.png' %}" alt="blazer" /></p></div>
+       </div>
+       
+       <div id="design_bottom_box">
+        <div><p><img id="skinny_pants" class="design_bottom" src="{% static 'myapp/img/skinny_pants.png' %}" alt="skinny pants" /></p></div>
+        <div><p><img id="a_line_skirt" class="design_bottom" src="{% static 'myapp/img/a_line_skirt.png' %}" alt="a line skirt" /></p></div>
+        <div><p><img id="blue_jeans" class="design_bottom" src="{% static 'myapp/img/blue_jeans.png' %}" alt="blue jeans" /></p></div>
+        <div><p><img id="cotton_pants" class="design_bottom" src="{% static 'myapp/img/cotton_pants.png' %}" alt="cotton pants" /></p></div>
+        <div><p><img id="denim_skirt" class="design_bottom" src="{% static 'myapp/img/denim_skirt.png' %}" alt="denim skirt" /></p></div>
+        <div><p><img id="h_line_skirt" class="design_bottom" src="{% static 'myapp/img/h_line_skirt.png' %}" alt="h line skirt" /></p></div>
+       </div>
+       
+       <div id="design_dress_box">
+          <div><p><img id="stripe_dress" class="design_dress" src="{% static 'myapp/img/stripeDress_.png' %}" alt="stripe dress" /></p></div>
+          <div><p><img id="one_color_dress" class="design_dress" src="{% static 'myapp/img/one_color_dress.png' %}" alt="one-color dress" /></p></div>
+       </div>
+     </div>
+
+     <!-- crawling으로 넘겨줄 변수 관리-->
+      <div>
+        <br/><p style="text-align: center;"><button class="button" onclick="cahnge_color();">CHANGE COLOR</button></p><br/>
+        <form action = "/myapp/undecided.html" method="post">
+          {% csrf_token %}
+          <p style="text-align: center;"><button class="button" type="submit" name = "show" value="none" onclick="throw_keyword();">SHOW RESULT</button></p>
+        </form>
+
+      </div>
+   </td>
     </tr> 
 
-    <tr id="row"> 
-    <td id="category_width"><img id="bottom" class="btn2" src="{% static 'myapp/img/bottom.png' %}"></td> 
+    <tr> 
+    <td id="category_width"><input type="image" id="category_bottom" class="btn" src="{% static 'myapp/img/bottom.png' %}"></td> 
     <td id="slide_width"><div id="slider_bottom" class="flexslider">
      <ul class="slides">
-       <li><img src={% static 'myapp/img/skinnyPants.png' %} alt="skinny pants" />
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/skinny_pants.png' %}" alt="skinny_pants" />
        <p class="flex-caption">skinny pants</p></li>
-       <li><img src={% static 'myapp/img/aLineSkirt.png' %} alt="a line skirt" />
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/a_line_skirt.png' %}" alt="a_line_skirt" />
        <p class="flex-caption">A line skirt</p></li>
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/blue_jeans.png' %}" alt="blue_jeans" />
+       <p class="flex-caption">Jeans</p></li>
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/cotton_pants.png' %}" alt="cotton_pants" />
+       <p class="flex-caption">Cotton pants</p></li>
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/denim_skirt.png' %}" alt="denim_skirt" />
+       <p class="flex-caption">Denim skirt</p></li>
+       <li><input type="image" id="bottom" class="slide_img" src="{% static 'myapp/img/h_line_skirt.png' %}" alt="h_line_skirt" />
+       <p class="flex-caption">H line skirt</p></li>
      </ul>
-   </div></td>  
+   </div>
+   </td>  
     </tr> 
 
-    <tr id="row"> 
-    <td id="category_width"><img id="outerwear" class="btn3" src="{% static 'myapp/img/outerwear.png' %}"></td> 
+    <tr> 
+    <td id="category_width"><input type="image" id="category_outerwear" class="btn" src="{% static 'myapp/img/outerwear.png' %}"></td> 
     <td id="slide_width"><div id="slider_outerwear" class="flexslider">
      <ul class="slides">
-       <li><img src={% static 'myapp/img/leatherJacket.png' %} alt="leather jacket" />
-       <p class="flex-caption">leather jacket</p></li>
-       <li><img src={% static 'myapp/img/denimJacket.png' %} alt="denim jacket" />
-       <p class="flex-caption">denim jacket</p></li>
+       <li><input type="image" id="outerwear" class="slide_img" src="{% static 'myapp/img/denim_jacket.png' %}" alt="denim_jacket" />
+       <p class="flex-caption">Denim jacket</p></li>
+       <li><input type="image" id="outerwear" class="slide_img" src="{% static 'myapp/img/blazer.png' %}" alt="blazer" />
+       <p class="flex-caption">Blazer</p></li>
+       <li><input type="image" id="outerwear" class="slide_img" src="{% static 'myapp/img/cardigan.png' %}" alt="cardigan" />
+       <p class="flex-caption">Cardigan</p></li>
      </ul>
-   </div></td>  
+   </div></td> 
+
+   <!-- COLOR BUTTON -->
+   <td rowspan="2">
+   <div id="two_color">
+    <table id="color_box_two_color">
+      <tr><td>
+        <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-1.png' %}" onclick="select_color_set(this);" alt="pink,white"/></div>
+        <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-1.png' %}" onclick="select_color_set(this);" alt="dark brown,black"/></div>
+        <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-1.png' %}" onclick="select_color_set(this);" alt="mint,white"/></div>
+        <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+        <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-1.png' %}" onclick="select_color_set(this);" alt="red violet,white"/></div>
+        <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-1.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+        <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-1.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+        <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-1.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+        <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+        <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+        <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-1.png' %}" onclick="select_color_set(this);" alt="yellow,black"/></div>
+        <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-1.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+      </td>
+      <td>
+       <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-6.png' %}" onclick="select_color_set(this);" alt="pink,black"/></div>
+         <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-3.png' %}" onclick="select_color_set(this);" alt="khaki,black"/></div>
+        <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-2.png' %}" onclick="select_color_set(this);" alt="skyblue,white"/></div>
+        <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-2.png' %}" onclick="select_color_set(this);" alt="yellow,white"/></div>
+        <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-2.png' %}" onclick="select_color_set(this);" alt="purple,white"/></div>
+        <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-3.png' %}" onclick="select_color_set(this);" alt="dark red,black"/></div>
+        <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-2.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+       <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-4.png' %}" onclick="select_color_set(this);" alt="gray,white"/></div>
+        <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-2.png' %}" onclick="select_color_set(this);"  alt="navy,white"/></div>
+        <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-2.png' %}" onclick="select_color_set(this);" alt="red,black"/></div>
+       <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-3.png' %}" onclick="select_color_set(this);" alt="red violet,black"/></div>
+        <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-2.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+      </td>
+      <td>
+        <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-4.png' %}" onclick="select_color_set(this);" alt="lavender,white"/></div>
+        <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-4.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+       <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-5.png' %}" onclick="select_color_set(this);" alt="sky blue, white"/></div>
+        <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-3.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+        <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-5.png' %}" onclick="select_color_set(this);" alt="red violet,black"/></div>
+        <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-4.png' %}" onclick="select_color_set(this);" alt="brown,black"/></div>
+        <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-3.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+        <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-7.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+        <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-3.png' %}" onclick="select_color_set(this);" alt="yellow,white"/></div>
+        <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-4.png' %}" onclick="select_color_set(this);" alt="orange,black"/></div>
+        <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-4.png' %}" onclick="select_color_set(this);" alt="green,black"/></div>
+        <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-3.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+      </td></tr>
+
+      <tr><td>
+       <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-9.png' %}" onclick="select_color_set(this);" alt="lavender,black"/></div>
+       <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-5.png' %}" onclick="select_color_set(this);" alt="white,black"/></div>
+       <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-6.png' %}" onclick="select_color_set(this);" alt="mint,black"/></div>
+       <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-8.png' %}" onclick="select_color_set(this);" alt="red,black"/></div>
+        <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-6.png' %}" onclick="select_color_set(this);" alt="purple,black"/></div>
+       <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-4.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+       <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-10.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+       <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-4.png' %}" onclick="select_color_set(this);" alt="green,white"/></div>
+       <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-4.png' %}" onclick="select_color_set(this);" alt="gray,white"/></div>
+      </td>
+      <td>
+        <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-7.png' %}" onclick="select_color_set(this);" alt="sky blue,black"/></div>
+        <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-9.png' %}" onclick="select_color_set(this);" alt="yellow,black"/></div>
+        <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-5.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+        <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-6.png' %}" onclick="select_color_set(this);" alt="yellow,blue"/></div>
+      </td>
+      <td>
+        <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-10.png' %}" onclick="select_color_set(this);" alt="sky blue,black"/></div>
+        <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-10.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+        <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-6.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+      </td></tr>
+
+      <tr><td></td><td></td><td></td></tr>
+
+      <tr><td></td><td></td><td></td></tr>
+    </table>
+    </div>
+
+    <div id="one_color">
+      <table id="color_box_one_color">
+        <tr><td>
+           <div><input type="image" class="우아한_one" src="{% static 'myapp/img/button/one/1-1.png' %}"  alt="pink" onclick="select_color_set(this);"/></div>
+           <div><input type="image" class="단정한_one" src="{% static 'myapp/img/button/one/2-1.png' %}" alt="dark brown" onclick="select_color_set(this);"/></div>
+           <div><input type="image" class="맑은_one" src="{% static 'myapp/img/button/one/3-2.png' %}" alt="sky blue" onclick="select_color_set(this);"/></div>
+           <div><input type="image" class="스포티한_one" src="{% static 'myapp/img/button/one/4-1.png' %}" alt="red" onclick="select_color_set(this);"/></div>
+           <div><input type="image" class="화려한_one" src="{% static 'myapp/img/button/one/5-1.png' %}" alt="red violet" onclick="select_color_set(this);"/></div>
+            <div><input type="image" class="강인한_one" src="{% static 'myapp/img/button/one/6-1.png' %}" alt="gray" onclick="select_color_set(this);"/></div>
+            <div><input type="image" class="수수한_one" src="{% static 'myapp/img/button/one/7-1.png' %}" alt="olive" onclick="select_color_set(this);"/></div>
+            <div><input type="image" class="지적인_one" src="{% static 'myapp/img/button/one/8-1.png' %}" alt="navy" onclick="select_color_set(this);"/></div>
+            <div><input type="image" class="캐주얼한_one" src="{% static 'myapp/img/button/one/10-1.png' %}" alt="red" onclick="select_color_set(this);"/></div>
+             <div><input type="image" class="역동적인_one" src="{% static 'myapp/img/button/one/11-1.png' %}" alt="dark red" onclick="select_color_set(this);"/></div>  
+             <div><input type="image" class="자극적인_one" src="{% static 'myapp/img/button/one/12-1.png' %}" alt="yellow" onclick="select_color_set(this);"/></div>
+             <div><input type="image" class="늠름한_one" src="{% static 'myapp/img/button/one/13-1.png' %}" alt="blue" onclick="select_color_set(this);"/></div>
+        </td>
+        <td>
+        <div><input type="image" class="우아한_one" src="{% static 'myapp/img/button/one/1-4.png' %}" alt="lavender" onclick="select_color_set(this);"/></div>
+        <div><input type="image" class="단정한_one" src="{% static 'myapp/img/button/one/2-3.png' %}" alt="khaki" onclick="select_color_set(this);"/></div>
+        <div><input type="image" class="맑은_one" src="{% static 'myapp/img/button/one/white.png' %}" alt="white" onclick="select_color_set(this);"/></div>
+        <div><input type="image" class="스포티한_one" src="{% static 'myapp/img/button/one/4-2.png' %}" alt="yellow" onclick="select_color_set(this);"/></div>
+        <div><input type="image" class="화려한_one" src="{% static 'myapp/img/button/one/5-2.png' %}" alt="purple" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="강인한_one" src="{% static 'myapp/img/button/one/6-2.png' %}"  alt="green" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="지적인_one" src="{% static 'myapp/img/button/one/8-4.png' %}" alt="gray" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="캐주얼한_one" src="{% static 'myapp/img/button/one/10-2.png' %}" alt="blue" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="역동적인_one" src="{% static 'myapp/img/button/one/11-2.png' %}" alt="orange" onclick="select_color_set(this);"/></div> 
+          <div><input type="image" class="자극적인_one" src="{% static 'myapp/img/button/one/12-2.png' %}" alt="purple" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="늠름한_one" src="{% static 'myapp/img/button/one/13-2.png' %}" alt="gray" onclick="select_color_set(this);"/></div>
+        </td>
+        <td>
+          <div><input type="image" class="스포티한_one" src="{% static 'myapp/img/button/one/4-3.png' %}" alt="navy" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="우아한_one" src="{% static 'myapp/img/button/one/white.png' %}" alt="white" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="단정한_one" src="{% static 'myapp/img/button/one/black.png' %}" alt="black" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="화려한_one" src="{% static 'myapp/img/button/one/5-3.png' %}" alt="pink" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="강인한_one" src="{% static 'myapp/img/button/one/6-3.png' %}" alt="dark red" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="캐주얼한_one" src="{% static 'myapp/img/button/one/10-3.png' %}" alt="yellow" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="역동적인_one" src="{% static 'myapp/img/button/one/11-3.png' %}" alt="yellow" onclick="select_color_set(this);"/></div> 
+          <div><input type="image" class="자극적인_one" src="{% static 'myapp/img/button/one/12-3.png' %}" alt="red violet" onclick="select_color_set(this);"/></div>
+        </td></tr>
+
+        <tr><td>
+          <div><input type="image" class="스포티한_one" src="{% static 'myapp/img/button/one/4-4.png' %}" alt="green" onclick="select_color_set(this);"/></div>
+          
+          <div><input type="image" class="강인한_one" src="{% static 'myapp/img/button/one/6-4.png' %}" alt="brown" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="캐주얼한_one" src="{% static 'myapp/img/button/one/10-4.png' %}" alt="green" onclick="select_color_set(this);"/></div>
+          <div><input type="image" class="자극적인_one" src="{% static 'myapp/img/button/one/12-4.png' %}" alt="green" onclick="select_color_set(this);"/></div>
+
+        </td></tr>
+        <tr><td></td></tr><tr><td></td></tr>
+      </table>
+    </div>
+   </td> 
     </tr> 
 
-    <tr id="row"> 
-    <td id="category_width"><img id="dress" class="btn4" src="{% static 'myapp/img/dress.png' %}"></td> 
+    <tr> 
+    <td id="category_width"><input type="image" id="category_dress" class="btn" src="{% static 'myapp/img/dress.png' %}"></td> 
     <td id="slide_width"> <div id="slider_dress" class="flexslider">
      <ul class="slides">
-       <li><img src={% static 'myapp/img/bustierDress.png' %} alt="bustier dress" />
-       <p class="flex-caption">bustier dress</p></li>
-       <li><img src={% static 'myapp/img/stripeDress.png' %} alt="stripe dress" />
-       <p class="flex-caption">stripe dress</p></li>
+       <li><input type="image" id="dress" class="slide_img" src="{% static 'myapp/img/stripeDress_.png' %}" alt="stripe_dress" />
+       <p class="flex-caption">Stripe dress</p></li>
+       <li><input type="image" id="dress" class="slide_img" src="{% static 'myapp/img/one_color_dress.png' %}" alt="one_color_dress" />
+       <p class="flex-caption">one color dress</p></li>
      </ul>
    </div></td>  
-    </tr> 
   </tbody>
-</table>  
-
-   <div>
-   
-   
-   
-   
-
-  <div id="word_box">
-      <!-- <h3>jQCloud Example</h3>
-      <p> Please choose the word that desired style </p> -->
-      <div id="words" style="width: 300px; height: 300px; border: 1px solid #ccc;"></div>
-  </div>
-
-   </div>
-
-   
-
-   
-
-   
-
-  
-
+  </tr>
+</table> 
 
 <!-- SLIDER FUNCTION -->
-   <script> 
-   // 처음 loading 시 숨김
-   $(document).ready(function(){
-     $("div#slider_top").toggle();
-     $("div#slider_bottom").toggle();
-     $("div#slider_outerwear").toggle();
-     $("div#slider_dress").toggle();
+<script> 
+ // 처음 loading 시 숨김
+ $(document).ready(function(){
+    $("div#slider_top").toggle();
+    $("div#slider_bottom").toggle();
+    $("div#slider_outerwear").toggle();
+    $("div#slider_dress").toggle();
+ 
+    $("input.우아한_two").hide();  $("input.우아한_one").hide();
+    $("input.단정한_two").hide();  $("input.단정한_one").hide();
+    $("input.맑은_two").hide();  $("input.맑은_one").hide();
+    $("input.스포티한_two").hide(); $("input.스포티한_one").hide();
+    $("input.화려한_two").hide();  $("input.화려한_one").hide();
+    $("input.강인한_two").hide();   $("input.강인한_one").hide();
+    $("input.수수한_two").hide();  $("input.수수한_one").hide();
+    $("input.지적인_two").hide();  $("input.지적인_one").hide();
+    $("input.캐주얼한_two").hide(); $("input.캐주얼한_one").hide();
+    $("input.역동적인_two").hide();; $("input.역동적인_one").hide();
+    $("input.자극적인_two").hide(); $("input.자극적인_one").hide();
+    $("input.늠름한_two").hide();  $("input.늠름한_one").hide();
 
-   })
+    $("img.design_dress").toggle();
+    $("img.design_top").toggle();
+    $("img.design_bottom").toggle();
+    $("img.design_outerwear").toggle();
+ });
 
-   // 카테고리 click시 슬라이드 show
-   $("img#top").click(function () { 
-       $("div#slider_top").toggle("slow"); 
+ // 카테고리 click시 슬라이드 show
+$("input#category_top").click(function () { 
+    $("div#slider_top").toggle("slow"); 
+ })
 
-   })
+ $("input#category_bottom").click(function () {  
+    $("div#slider_bottom").toggle("slow"); 
+ })
 
-   $("img#bottom").click(function () {  
-       $("div#slider_bottom").toggle("slow"); 
+ $("input#category_outerwear").click(function () { 
+     $("div#slider_outerwear").toggle("slow"); 
+ })
 
-   })
+ $("input#category_dress").click(function () { 
+     $("div#slider_dress").toggle("slow"); 
+ });
 
-   $("img#outerwear").click(function () { 
-       $("div#slider_outerwear").toggle("slow"); 
+ var keyword_top=null, keyword_bottom=null, keyword_outerwear=null, keyword_dress=null;
+ var keyword_color1=null, keyword_color2=null;// 드레스 색은 keyword_color1에만
+ var previous_design_top=0, previous_design_bottom=0, previous_design_outerwear=0, previous_design_dress=0;
+var selected_color;
+var box = document.getElementById("design_dress_box");
+var box1 = document.getElementById("design_top_box");
+var box2 = document.getElementById("design_bottom_box");
+var box3 = document.getElementById("design_outerwear_box");
 
-   })
+// crawling으로 넘겨줄 검색어 상태 
+function state(selected_design_category, el){
+  var crawling_design = document.getElementById(el).alt
 
-   $("img#dress").click(function () { 
-       $("div#slider_dress").toggle("slow"); 
+  if(selected_design_category == "top"){
+    keyword_top = crawling_design;
+  }
+  else if(selected_design_category == "outerwear"){
+    keyword_outerwear = crawling_design;
+  }
+  else if(selected_design_category == "bottom"){
+    keyword_bottom = crawling_design;
+  }else{
+    keyword_dress = crawling_design;
+  }
+  console.log(keyword_top + " " + keyword_bottom + " "+ keyword_outerwear + " " + keyword_dress);
+}
 
-   }); 
-   </script>
+// python으로 넘겨줄 crawling 검색어로 value 바꿔주는 함수
+function throw_keyword(){
+    $("button[type=submit][name=show]").val(keyword_top+","+keyword_bottom+","+keyword_outerwear+","+keyword_dress+","+keyword_color1+","+keyword_color2);
+}
 
+$(".slide_img").click(function () { 
+     var selected_design = this.alt;
+     var selected_design_category = this.id;
+  
+     if(selected_design_category == "top"){
+        if(previous_design_dress != 0){ // 드레스에서 상의 디자인을 선택하면
+          keyword_color1 = null; 
+          box.style.backgroundColor="";
+          $(selected_color+"_one").hide("slow");
+          $(selected_color+"_two").show("fast");
+        }
+        selected_hide(previous_design_dress); previous_design_dress = 0;  keyword_dress = null;;
+        selected_hide(previous_design_outerwear); previous_design_outerwear = 0;  keyword_outerwear=null;
+        if(previous_design_top != 0){// 이미 디자인이 선택되어있으면
+           selected_hide(previous_design_top);// 이전 디자인을 숨기고
+           selected_show(selected_design);// 선택된 디자인을 보여준다
+           state(selected_design_category, selected_design);// crawling의 조건으로 업데이트 시킨다
+           previous_design_top = selected_design;
+        }else{
+          selected_show(selected_design);
+          state(selected_design_category, selected_design);
+          previous_design_top = selected_design;
+        }
+     }
+     else if(selected_design_category == "bottom"){
+      if(previous_design_dress != 0){// 드레스 디자인에서 하의 디자인을 선택하면
+        selected_hide(previous_design_dress); previous_design_dress = 0;  keyword_dress=null;
+        keyword_color1 = null; 
+        box.style.backgroundColor="";
+        $(selected_color+"_one").hide("slow");
+        $(selected_color+"_two").show("fast");
+      }
+
+      if(previous_design_bottom != 0){// 이미 디자인이 선택되어있으면
+        selected_hide(previous_design_bottom);// 이전 디자인을 숨기고
+        selected_show(selected_design);// 선택된 디자인을 보여준다
+        state(selected_design_category, selected_design);
+        previous_design_bottom = selected_design;
+      }else{
+        selected_show(selected_design);
+        state(selected_design_category, selected_design);
+        previous_design_bottom = selected_design;
+      }
+
+     }
+     else if(selected_design_category == "outerwear"){
+      if(previous_design_dress != 0){// 드레스 디자인에서 외투 디자인을 선택하면
+        selected_hide(previous_design_dress); previous_design_dress = 0;  keyword_dress=null;
+        keyword_color1 = null; 
+        box.style.backgroundColor="";// 드레스 디자인 배경색 제거
+        $(selected_color+"_one").hide("slow");
+        $(selected_color+"_two").show("fast");
+      }
+      selected_hide(previous_design_top); previous_design_top = 0;  keyword_top=null;
+
+      if(previous_design_outerwear != 0){
+         selected_hide(previous_design_outerwear);
+         selected_show(selected_design);
+         state(selected_design_category, selected_design);
+         previous_design_outerwear = selected_design;
+      }else{
+        selected_show(selected_design);
+        state(selected_design_category, selected_design);
+        previous_design_outerwear = selected_design;
+      }
+      
+     }else{// 선택한 디자인이 드레스라면
+        // 다른 카테고리는 숨기고 이전 선택 초기화
+        if((previous_design_top != 0) || (previous_design_outerwear != 0)){
+          keyword_color1 = null;  keyword_color2 = null;
+          box1.style.backgroundColor="";
+          box3.style.backgroundColor="";
+        }
+        selected_hide(previous_design_outerwear); previous_design_outerwear = 0;  keyword_outerwear=null;
+        selected_hide(previous_design_top); previous_design_top = 0;  keyword_top=null;
+        selected_hide(previous_design_bottom);  previous_design_bottom = 0; keyword_bottom=null;
+        box2.style.backgroundColor="";
+
+        if(previous_design_dress != 0){// 이미 드레스 디자인이 선택되어있으면
+           selected_hide(previous_design_dress);// 이전 드레스 디자인을 숨기고
+           selected_show(selected_design);// 선택된 드레스 디자인을 보여준다
+           state(selected_design_category, selected_design);
+           previous_design_dress = selected_design;
+        }else{
+          // 상하의 디자인에서 드레스 디자인을 선택하면 색 조합을 one color로 바꾼 뒤 디자인 변경
+          $(selected_color+"_two").hide("slow");
+          $(selected_color+"_one").show("fast");
+
+          selected_show(selected_design);
+          state(selected_design_category, selected_design);
+          previous_design_dress = selected_design;
+        }
+     }
+ });
+
+function selected_show(design){
+  $("img#" + design).show();
+};
+
+function selected_hide(design){
+  $("img#" + design).hide();
+};
+
+
+<!-- COLOR BOX -->
+var mood_list = [
+  {text: "우아한", state: "0"},  {text: "단정한", state: "0"},  {text: "맑은", state: "0"},
+  {text: "스포티한", state: "0"},  {text: "화려한", state: "0"}, {text: "강인한", state: "0"},
+  {text: "수수한", state: "0"},  {text: "지적인", state: "0"},
+  {text: "캐주얼한", state: "0"}, {text: "역동적인", state: "0"}, {text: "자극적인", state: "0"},
+  {text: "늠름한", state: "0"},
+]
+
+var previous;
+var next;
+var first = 0;// 맨 처음 불려졌을 때
+var previous_color;// 이전에 선택된 색
+
+function change_color_button(el){
+  var i;
+ for(i = 0; i<mood_list.length; i++){
+    if(mood_list[i].text == el){
+      next = i;
+      selected_color = "input." + mood_list[next].text;
+
+      if(first == 0){
+        if(keyword_dress == null){
+          $(selected_color+"_two").show("slow");
+        }else{
+          $(selected_color+"_one").show("slow");
+        }
+          mood_list[next].state = 1;
+          previous = next;
+          previous_color = selected_color;
+          first = 1;
+        
+      }else{
+        if(keyword_dress == null){
+          // 변수 하나 더 놔서 구분하는 거 보다 둘 다 숨기는 걸로 구현 - 상하의에서 드레스 전환
+          $(previous_color+"_two").hide("fast");
+          $(previous_color+"_one").hide("fast");
+
+          $(selected_color+"_two").show("slow");
+        }else{
+          $(previous_color+"_two").hide("fast");
+          $(previous_color+"_one").hide("fast");
+
+          $(selected_color+"_one").show("slow");
+        }
+        mood_list[next].state = 1;
+        previous = next;
+        previous_color = selected_color;
+      }
+      break;
+    }
+ }
+}
+
+// 색 조합 선택과 선택하면 crawling에 넘겨줄 키워드가 바뀌고 DESIGN BOX에 배경에 바뀜
+function select_color_set(el){
+  if(keyword_dress != null){// 색이 1개
+    keyword_color1 = el.alt;
+    keyword_color2 = null;
+
+    // 버튼 이미지 이름 추출
+    var btn_name=el.src;
+    btn_name=btn_name.split('/'); btn_name=btn_name[btn_name.length-1].split('.');
+
+    // 드레스 디자인 영역 배경색 변경
+    if(btn_name[0] == '1-1'){
+        box.style.backgroundColor="#f2c2d7";
+     }else if(btn_name[0] == '1-4'){
+        box.style.backgroundColor="#bd9dc7";
+     }else if(btn_name[0] == '2-1'){
+        box.style.backgroundColor="#402007";
+     }else if(btn_name[0] == '2-3'){
+        box.style.backgroundColor="#3b300a";
+     }else if(btn_name[0] == '3-2'){
+        box.style.backgroundColor="#97d4de";
+     }else if(btn_name[0] == '4-1'){
+        box.style.backgroundColor="#cf110a";
+     }else if(btn_name[0] == '4-2'){
+        box.style.backgroundColor="#fad714";
+     }else if(btn_name[0] == '4-3'){
+        box.style.backgroundColor="#142766";
+     }else if(btn_name[0] == '4-4'){
+        box.style.backgroundColor="#176f87";
+     }else if(btn_name[0] == '5-1'){
+        box.style.backgroundColor="#bd156c";
+     }else if(btn_name[0] == '5-2'){
+        box.style.backgroundColor="#81308c";
+     }else if(btn_name[0] == '5-3'){
+        box.style.backgroundColor="#ffa3d9";
+     }else if(btn_name[0] == '6-1'){
+        box.style.backgroundColor="#696960";
+     }else if(btn_name[0] == '6-2'){
+        box.style.backgroundColor="#194852";
+     }else if(btn_name[0] == '6-3'){
+        box.style.backgroundColor="#801c2e";
+     }else if(btn_name[0] == '6-4'){
+        box.style.backgroundColor="#753b0b";
+     }else if(btn_name[0] == '7-1'){
+        box.style.backgroundColor="#d4c981";
+     }else if(btn_name[0] == '8-1'){
+        box.style.backgroundColor="#131e4d";
+     }else if(btn_name[0] == '8-4'){
+        box.style.backgroundColor="#696960";
+     }else if(btn_name[0] == '9-1'){
+        box.style.backgroundColor="#f69988";
+     }else if(btn_name[0] == '9-3'){
+        box.style.backgroundColor="#fad925";
+     }else if(btn_name[0] == '9-4'){
+        box.style.backgroundColor="#d9ec6a";
+     }else if(btn_name[0] == '10-1'){
+        box.style.backgroundColor="#d01109";
+     }else if(btn_name[0] == '10-2'){
+        box.style.backgroundColor="#18218b";
+     }else if(btn_name[0] == '10-3'){
+        box.style.backgroundColor="#fad925";
+     }else if(btn_name[0] == '10-4'){
+        box.style.backgroundColor="#43ae71";
+     }else if(btn_name[0] == '11-1'){
+        box.style.backgroundColor="#b81612";
+     }else if(btn_name[0] == '11-2'){
+        box.style.backgroundColor="#f29d11";
+     }else if(btn_name[0] == '11-3'){
+        box.style.backgroundColor="#fad914";
+     }else if(btn_name[0] == '12-1'){
+        box.style.backgroundColor="#fad914";
+     }else if(btn_name[0] == '12-2'){
+        box.style.backgroundColor="#84308e";
+     }else if(btn_name[0] == '12-3'){
+        box.style.backgroundColor="#bf156f";
+     }else if(btn_name[0] == '12-4'){
+        box.style.backgroundColor="#148d71";
+     }else if(btn_name[0] == '13-1'){
+        box.style.backgroundColor="#183276";
+     }else if(btn_name[0] == '13-2'){
+        box.style.backgroundColor="#a1a194";
+     }
+     else if(btn_name[0] == 'white'){
+        box.style.backgroundColor="#ffffff";
+     }
+     else if(btn_name[0] == 'black'){
+        box.style.backgroundColor="#000000";
+     }
+
+    //console.log("dress color is " + keyword_color1 + " " + keyword_color2);
+  }else{// 색이 2개
+    // 버튼 이미지 이름 추출
+    var btn_name=el.src;
+    btn_name=btn_name.split('/'); btn_name=btn_name[btn_name.length-1].split('.');
+
+   // 버튼 조합에 맞는 색 추출 
+   var color_set = el.alt;
+   color_set = color_set.split(',');
+   keyword_color1 = color_set[0]; keyword_color2 = color_set[1];
+
+   // 버튼 이미지 이름으로 색 조합에 맞는 색 적용 
+   if(btn_name[0] == '1-1'){
+      if(keyword_top != null){
+        box1.style.backgroundColor="#f2c2d7";
+      }else if(keyword_outerwear != null){
+        box3.style.backgroundColor="#f2c2d7";
+      }
+      if(keyword_bottom != null){
+        box2.style.backgroundColor="#ffffff";   
+      }
+   }else if(btn_name[0] == '1-4'){
+    if(keyword_top != null){
+      box1.style.backgroundColor="#bd9dc7";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#bd9dc7";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '1-6'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#f2c2d7";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#f2c2d7";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '1-9'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#bd9dc7";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#bd9dc7";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '2-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#402007";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#402007";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '2-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#3b300a";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#3b300a";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '2-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#696960";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#696960";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '2-5'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#ffffff";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#ffffff";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '3-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#daeef0";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#daeef0";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '3-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#97d4de";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#97d4de";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '3-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#f0f0f0";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#f0f0f0";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '3-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#daeef0";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#daeef0";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '3-5'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#5cb9cc";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#5cb9cc";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '3-6'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#daeef0";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#daeef0";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '3-7'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#97d4de";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#97d4de";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '3-10'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#5cb9cc";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#5cb9cc";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '4-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#cf110a";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#cf110a";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '4-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#fad714";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#fad714";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '4-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#142766";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#142766";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '4-8'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#cf110a";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#cf110a";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '4-9'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#fad714";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#fad714";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '4-10'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#142766";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#142766";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '5-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#bd156c";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#bd156c";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '5-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#81308c";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#81308c";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '5-5'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#bd156c";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#bd156c";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '5-6'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#81308c";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#81308c";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '6-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#696960";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#696960";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '6-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#801c2e";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#801c2e";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '6-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#753b0b";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#753b0b";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '7-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#d4c981";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#d4c981";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '7-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#ab9d6f";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#ab9d6f";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '7-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#c5cc9b";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#c5cc9b";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '7-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#d4c981";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#d4c981";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '7-5'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#ab9d6f";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#ab9d6f";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '7-6'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#c5cc9b";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#c5cc9b";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '8-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#131e4d";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#131e4d";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '8-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#696960";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#696960";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '8-7'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#131e4d";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#131e4d";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '8-10'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#696960";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#696960";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '10-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#d01109";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#d01109";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '10-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#18218b";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#18218b";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '10-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#fad925";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#fad925";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '10-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#43ae71";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#43ae71";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '10-6'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#fad925";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#fad925";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#18218b";   
+    }
+   }else if(btn_name[0] == '11-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#b81612";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#b81612";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '11-2'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#b81612";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#b81612";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '11-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#f29d11 ";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#f29d11 ";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '12-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#fad914";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#fad914";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '12-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#bf156f";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#bf156f";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '12-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#148d71";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#148d71";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '13-1'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#183276";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#183276";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '13-2'){
+     if(keyword_top != null){
+      box1.style.backgroundColor="#a1a194";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#a1a194";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#000000";   
+    }
+   }else if(btn_name[0] == '13-3'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#183276";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#183276";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }else if(btn_name[0] == '13-4'){
+      if(keyword_top != null){
+      box1.style.backgroundColor="#a1a194";
+    }else if(keyword_outerwear != null){
+      box3.style.backgroundColor="#a1a194";
+    }
+    if(keyword_bottom != null){
+      box2.style.backgroundColor="#ffffff";   
+    }
+   }
+
+  }
+}
+
+function cahnge_color(){
+  console
+  if(keyword_dress == null){// 드레스가 아니라면 상하의를 바꾸지만 드레스라면 색을 바꾸지 않음
+     var temp = keyword_color1;
+    keyword_color1 = keyword_color2;
+    keyword_color2 = temp;
+
+    console.log("top" + box1.style.backgroundColor);
+    console.log("bottom" + box2.style.backgroundColor);
+    console.log("outerwear" + box3.style.backgroundColor);
+
+    // 상하의 색 바꿀 때 사용 임시 변수
+    var temp1 = (keyword_top != null) ? box1.style.backgroundColor : ((keyword_outerwear != null) ? box3.style.backgroundColor : "");
+    var temp2 = (keyword_bottom != null) ? box2.style.backgroundColor : ""; 
+
+    // 드레스가 아니라면 상하의 디자인 박스 배경색도 바꿔야함
+    if(keyword_top != null){// 상의가 선택 됐다면
+      box1.style.backgroundColor = temp2;
+      // 상의가 선택되고 하의도 선택이 됐다면
+      if(keyword_bottom != null){
+       box2.style.backgroundColor = temp1;
+      }
+    }else if(keyword_outerwear != null){
+        box3.style.backgroundColor = temp2;
+       // 아우터가 선택되고 하의도 선택이 됐다면
+      if(keyword_bottom != null){
+        box2.style.backgroundColor = temp1;
+      }
+    }
+  }else{
+    return;
+  }
+}
+</script>
+
+<!-- WORD BOX -->
 <script type="text/javascript">
-  var word_list = [
-    {text: "맑은", weight: 4},
-    {text: "지적인", weight: 2.5, html: {"class": "vertical"}},
-    {text: "화려한", weight: 2.5},
-    {text: "수수한", weight: 2.5, html: {"class": "vertical"}},
-    {text: "스포티한", weight: 2},
-    {text: "단정한", weight: 3},
-    {text: "우아한", weight: 3},
-    {text: "강인한", weight: 2, html: {"class": "vertical"}},
+jQuery( document ).ready(function() {
+    
+var word_list = [
+    {text: "단정한", weight: 13, color: "#ad8c76",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "지적인", weight: 10.5, html: {"class": "vertical"}, color: "#7c999c",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "화려한", weight: 10.5, color: "#bd156c",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "수수한", weight: 4, html: {"class": "vertical"}, color: "#d4c981",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "스포티한", weight: 6, color: "#142766",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "맑은", weight: 8, color: "#daeef0",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "우아한", weight: 8, color: "#f2c2d7",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "강인한", weight: 8, html: {"class": "vertical"}, color: "#753b0b",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "캐주얼한", weight: 8, color: "#43ae71",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "역동적인", weight: 6, html: {"class": "vertical"}, color: "#b81612",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "자극적인", weight: 6, color: "#84308e",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "늠름한", weight: 3, html: {"class": "vertical"}, color: "#183276",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
   ];
-  $(function() {
-    $("#words").jQCloud(word_list);
-  });
+
+    // 크기를 여기서 함수의 2번째 파라매터로 넘겨줄수 있지만
+    // 그럴 경우 처음에 박스가 직선으로 나온 후 지정한 크기로 바뀜 - 안예뻐서 
+    jQuery('#words').jQCloud(word_list, {
+     fontSize : { from: 0.1,  to: 0.05  }
+    });
+    
+});
 </script>
 
 </div>
+
+<!-- 결과 이미지 띄울 자리 -->
+<!--<p>{{ result }}</p>-->
+<!--<span><img src="{{resultImgURL}}"/></span>-->
+
+<!--뭔진 모르겠지만 이렇게 하면 엑박 숨겨짐-->
+<style>
+img[src="{% static result0 %}"] { 
+    display: none;
+}
+</style>
+</br></br></br>
+</br></br></br>
+{% load static from staticfiles %}
+<center>
+<span><img src= "{% static result1 %}" style="width: 350px;"/></span></br></br></br>
+<span><img src= "{% static result2 %}" style="width: 350px;"/></span></br></br></br>
+<span><img src= "{% static result3 %}" style="width: 350px;"/></span></br></br></br>
+<span><img src= "{% static result4 %}" style="width: 350px;"/></span></br></br></br>
+<span><img src= "{% static result5 %}" style="width: 350px;"/></span></br></br></br>
+</center>
 </div>
-
-
 <div id="fourth-block">
    <div class="line">
       <div id="owl-demo2" class="owl-carousel owl-theme">
       <!-- 아래 남색 네모 -->
-        
-         
       </div>
    </div>
 </div>
-</section>
-<!-- FOOTER -->   
-<footer>
-   <div class="line">
-     <!-- 하늘색 바 --> 
-      
-   </div>
-</footer>
-   
-<script type="text/javascript">
-   jQuery(document).ready(function($) {  
-     $("#owl-demo").owlCarousel({
-    slideSpeed : 300,
-    autoPlay : true,
-    navigation : false,
-    pagination : false,
-    singleItem:true
-     });
-     $("#owl-demo2").owlCarousel({
-    slideSpeed : 300,
-    autoPlay : true,
-    navigation : false,
-    pagination : true,
-    singleItem:true
-     });
-   });  
-</script> 
-
 
 </body>
 </html>
