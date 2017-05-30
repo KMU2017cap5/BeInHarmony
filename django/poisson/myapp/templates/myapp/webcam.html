@@ -5,11 +5,12 @@
 <head>
   <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width" />
-      <title>사이트 소개</title>
+      <title>COLOR HARMONY - COLOR CHANGE</title>
       <link rel="stylesheet" href="{% static 'myapp/css/components.css' %}">
       <link rel="stylesheet" href="{% static 'myapp/css/responsee.css' %}">
       <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
-      <!--이거 포함하면 틀 이상해짐
+      <link rel="stylesheet" href="{% static 'myapp/css/webcamButton.css' %}">
+      <!--
       <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.carousel.css' %}">
       <link rel="stylesheet" href="{% static 'myapp/owl-carousel/owl.theme.css' %}">-->
       <!-- CUSTOM STYLE -->  
@@ -20,9 +21,9 @@
       <script type="text/javascript" src="{% static 'myapp/js/modernizr' %}"></script>
       <script type="text/javascript" src="{% static 'myapp/js/responsee.js' %}"></script>  
       <!-- Word box -->
-     <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/jqcloud.css' %}" />
-     <script type="text/javascript" src="{% static 'myapp/js/jqcloud.js' %}"></script>
-     <script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.0.4.js' %}"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/jqcloud.css' %}" />
+      <script type="text/javascript" src="{% static 'myapp/js/jqcloud-1.12.4.js' %}"></script>
+      <script type="text/javascript" src="{% static 'myapp/js/jqcloud-plugin.js' %}"></script>
       <!--[if lt IE 9]>
          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -32,82 +33,133 @@
       max-width: 70%;
       max-height: 70%;
     }
+
+    /* Word cloud */
+    div.jqcloud span.vertical {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: tb-rl;
+    }
+
+    /* COLOR BOX*/
+    #color_box_two_color{
+      /*border: 1px solid red;*/
+      margin-top: -100px;
+      /*height: 300px;*/
+      height: auto;
+      border: none;
+
+    }
+    #color_box_two_color tr{
+      background-color: white;
+      height: auto;
+      /*max-height: 20px;*/
+      overflow: hidden;
+    }
+
+    #color_box_two_color td{
+      max-width: 20px;
+      height: 70px;
+      /*border: 1px solid red;*/
+      border: none;
+    }
+
+    /* color_img겹치려고 만듦*/
+    #color_box_two_color div{
+      position: relative;
+    }
+
+
+    #color_box_two_color input{
+      position: absolute;
+      margin-top: -25px;
+      margin-left: 6px;
+      
+    }
+
+    #color_box_one_color{
+      /*border: 1px solid green;*/
+      margin-top: -280px;
+      /*height: 300px;*/
+      height: auto;
+      border: none;
+
+    }
+    #color_box_one_color tr{
+      background-color: white;
+      height: auto;
+      /*max-height: 20px;*/
+      overflow: hidden;
+      border: none;
+    }
+
+    #color_box_one_color td{
+      max-width: 20px;
+      height: 70px;
+      /*border: 1px solid green;*/
+     
+    }
+
+    /* color_img겹치려고 만듦*/
+    #color_box_one_color div{
+      position: relative;
+    }
+
+
+    #color_box_one_color input{
+      position: absolute;
+      margin-top: -25px;
+      margin-left: 30px
+    }
+
+    #fourth-block {
+  background: rgb(255, 255, 255);
+}
   </style>
 </head>
 <body>
-   <header>
-         <nav>
-            <div class="line">
-               <div class="top-nav">              
-                  <div class="logo hide-l">
-                     <a>캡스톤 <br /><strong>5조</strong></a>
-                  </div>                  
-                  <p class="nav-text">Custom menu text</p>
-                  <div class="top-nav s-12 l-5">
-                     <ul class="right top-ul chevron">
-                        <li><a href="../myapp/main.html">메인</a>
-                        </li>
-                        <li><a href="../myapp/intro.html">프로젝트 소개</a>
-                        </li>
-                     </ul>
-                  </div>
-                  <ul class="s-12 l-2">
-                     <li class="logo hide-s hide-m">
-                        <a>KMU Capstone<br /><strong>TEAM 5</strong></a>
-                     </li>
-                  </ul>
-                  <div class="top-nav s-12 l-5">
-                     <ul class="top-ul chevron">
-                        <li><a href="../myapp/webcam.html">카메라</a>
-                        </li>
-                        <li>
-                           <a href="../myapp/undecided.html">옷</a>            
-                           <ul>
-                              <li><a>Company 1</a>
-                              </li>
-                              <li><a>Company 2</a>
-                              </li>
-                              <li>
-                                 <a>Company 3</a>             
-                                 <ul>
-                                    <li><a>Company 3-1</a>
-                                    </li>
-                                    <li><a>Company 3-2</a>
-                                    </li>
-                                    <li><a>Company 3-3</a>
-                                    </li>
-                                 </ul>
-                              </li>
-                           </ul>
-                        </li>
-                     </ul> 
-                  </div>
-               </div>
-            </div>
-         </nav>
-      </header>
-
-   <section>
+<header>
+<nav>
+  <div class="line">
+     <div class="top-nav">              
+        <div class="logo hide-l">
+           <a>캡스톤 <br /><strong>5조</strong></a>
+        </div>                  
+        <p class="nav-text">Custom menu text</p>
+        <div class="top-nav s-12 l-5">
+           <ul class="right top-ul chevron">
+              <li><a href="../myapp/main.html">메인</a>
+              </li>
+              <li><a href="../myapp/intro.html">프로젝트 소개</a>
+              </li>
+           </ul>
+        </div>
+        <ul class="s-12 l-2">
+           <li class="logo hide-s hide-m">
+              <a>KMU Capstone<br /><strong>TEAM 5</strong></a>
+           </li>
+        </ul>
+        <div class="top-nav s-12 l-5">
+           <ul class="top-ul chevron">
+            <li><a href="../myapp/undecided.html">코디 검색</a></li>
+            <li><a href="../myapp/webcam.html">카메라</a></li>
+           </ul> 
+        </div>
+     </div>
+  </div>
+</nav>
+</header>
+      <section>
          <div id="head">
             <div class="line">
                <h1>COLOR CHANGE</h1>
             </div>
          </div>
-         <!--
-         <div id="content">
-            <div class="line">
-               <div style="text-align: center; font-size: 70pt; font-family: 'mfg';">
-               <p class="titile">Color Change</p>
-               </div> 
-            </div>
-         </div>
-         -->        
          <div id="third-block">
             <div class="line">
                <div class="margin">
                   <div class="s-12 m-12 l-6">
                      <video autoplay></video>     
-                     <p>비디오 레이아웃</p>                
+                     <!-- <p>비디오 레이아웃</p> -->               
                   </div>
                   <!-- 캡쳐 함수 -->
                   <script type="text/javascript">   
@@ -122,280 +174,530 @@
                      canvas.height = height;
                      context = canvas.getContext('2d');
                      context.drawImage(video, 0, 0, width, height);
-                     //img.src = canvas.toDataURL('image/png');
-                  }         
-              </script>                   
-                     <body onload="init()">
-                    <canvas id="can" ><canvas id="inner"></canvas></canvas>
-                    <script type="text/javascript">
-                       var video = document.querySelector('video');
+                     var urlVal = '.';                 
+                   }  
+                   </script>                   
+                    <body onload="init()">
+                    <canvas id="can"></canvas>
+                       <script type="text/javascript">                   
+                       var video = document.querySelector('video'); 
                        var cv = document.getElementById("can");
-                     cv.width = video.offsetWidth;
-                     cv.height = video.offsetHeight;
-                     cv.style = "border:1px solid;"         
+                       cv.width = video.offsetWidth;
+                       cv.height = video.offsetHeight;
+                       //cv.style = "border:1px solid;" 
+                      console.log({{resultImgURL}})
                     </script>
-                    <div style="position:relative;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>        
-                    <div style="position:relative;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>      
-                    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">                 
-                </body>
-                <p>캡쳐 화면</p> 
+                    <!-- 결과 이미지 출력 -->
+                    <span class="state-txt"><img src="{{resultImgURL}}"/></span>
+                    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;"> 
+                    </body>
+                <!--<p>캡쳐 화면</p>--> 
                </div>               
             </div>
+
          </div>
          <!-- 타이머 버튼 -->
         <div id="fourth-block">
-          <section class="grey">
-              <select id = "timerValue">
-              	 <option value="1">1</option>
-                 <option value="3">3</option>
-                 <option value="5">5</option>
-                 <option value="7">7</option>
-             </select>
-             <input type="button" class="contact-button" id="captureBtn" value="사진 찍기" />
-               <input type="button" class="contact-button" value="선 지우기" onclick="erase()"/>
-             <input type="button" class="contact-button" id="pickEndBtn" value="의류 색상 클릭하기" />              
+          <section class="white">
+             <select id = "timerValue">
+                 <option value="1">1초</option>
+                 <option value="3">3초</option>
+                 <option value="5">5초</option>
+                 <option value="7">7초</option>
+             </select>  
+             <input type="button" id="captureBtn" class = "button" value="Capture" />
+             <input type="button" id="confirmBtn" class = "button" value="캡쳐 완료"/>
+            <script type="text/javascript">       
+                  window.captureClicked = false;
+                  window.captureBtnClicked = false;
+                  window.boundaryDrawed = false;
+                  window.clothClicked = false;
+                  window.clothBtnClicked = false;                  
+                  var confBtn = document.getElementById('confirmBtn');  // 업로드 버튼
+                  confBtn.addEventListener('click',function(){                               
+                    if(confBtn.value=="캡쳐 완료"){ // 맨 처음 눌렀을 때
+                      window.captureBtnClicked = true;                   
+                      if(window.captureClicked){
+                        window.urlVal += canvas.toDataURL('image/png'); // 원본 캡쳐 url 추가                   
+                        document.getElementById('confirmBtn').value = "상하의 경계 그리기 완료"
+                      }
+                      else{
+                        {alert("사진을 먼저 찍어주세요.")}
+                      }
+                    }
+                    else if(confBtn.value=="상하의 경계 그리기 완료"){
+                      if(!window.boundaryDrawed){alert("상하의 경계를 그려주세요.")}
+                      else{
+                        document.getElementById('confirmBtn').value = "상하의 클릭 완료" // 확인용
+                        window.urlVal += ',';
+                        window.urlVal += canvas.toDataURL('image/png');
+                      }     
+                    }
+                    else if(confBtn.value=="상하의 클릭 완료"){                      
+                      if(!window.clothClicked){alert("상하의를 클릭해주세요.")}
+                      else{
+                        document.getElementById('resultBtn').style.visibility = 'visible';
+                        document.getElementById('confirmBtn').type = "hidden"
+                        window.urlVal += window.topUrl;                        
+                        window.urlVal += window.btmUrl;
+                        document.getElementById('upload').value = window.urlVal; // 최종 업로드 url 저장
+                      }
+                    }                  
+                  })
+            </script>
+             <!-- 팝업창 띄우기     
+            <script type="text/javascript">
+              if({{popUpCheck}}){
+                //{alert("알맞은 방법으로 버튼을 클릭해주세요.")}
+              }  
+            </script>
+            -->
+             <form action = "" method="post">
+                {% csrf_token %}
+               <input type="hidden" id="upload" name = "upload" type="text" autocomplete="on">
+               <button type="submit" class = "button" id = "resultBtn" name = "color_set" value="none" onclick="throw_keyword();">RESULT SHOW</button>
+               <script type="text/javascript">document.getElementById('resultBtn').style.visibility = 'hidden';</script>
+            </form>
+
+             <p>{{ btnColor }}</p>
           </section>
+
+          <!-- WORD BOX and COLOR SET-->
+          <table style="width: 400px; height: 360px;  margin-left: 120px;">
+            <tr>
+            <td>
+              <!-- WORD BOX -->
+              <div id="word_box">
+                <div id="words" style="width: 400px; height: 360px; border: 1px solid #ccc;"></div>
+              </div>
+            </td>
+            <td>
+              <!-- COLOR SET -->
+              <div id="two_color" style="width:360px;">
+                <table id="color_box_two_color">
+                  <tr>
+                    <td>
+                      <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-1.png' %}" onclick="select_color_set(this);" alt="lightpink,white"/></div>
+                      <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-1.png' %}" onclick="select_color_set(this);" alt="darkbrown,black"/></div>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-1.png' %}" onclick="select_color_set(this);" alt="mint,white"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-1.png' %}" onclick="select_color_set(this);" alt="redviolet,white"/></div>
+                      <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-1.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+                      <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-1.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-1.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+                      <div><input type="image" class="유쾌한_two" src="{% static 'myapp/img/button/9-1.png' %}" onclick="select_color_set(this);" alt="peach,yellow"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+                      <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-1.png' %}" onclick="select_color_set(this);" alt="red,white"/></div>
+                      <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-1.png' %}" onclick="select_color_set(this);" alt="yellow,black"/></div>
+                      <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-1.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-2.png' %}" onclick="select_color_set(this);" alt="lightpink,white"/></div>
+                      <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-2.png' %}"  onclick="select_color_set(this);"" alt="lightbrown,black"/></div>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-2.png' %}" onclick="select_color_set(this);" alt="skyblue,white"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-2.png' %}" onclick="select_color_set(this);" alt="yellow,white"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-2.png' %}" onclick="select_color_set(this);" alt="purple,white"/></div>
+                      <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-2.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-3.png' %}" onclick="select_color_set(this);" alt="cream,white"/></div>
+                      <div><input type="image" class="유쾌한_two" src="{% static 'myapp/img/button/9-3.png' %}" onclick="select_color_set(this);" alt="lightgreen,yellow"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-2.png' %}" onclick="select_color_set(this);"  alt="navy,white"/></div>
+                      <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-2.png' %}" onclick="select_color_set(this);" alt="red,black"/></div>
+                      <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-2.png' %}" onclick="select_color_set(this);"  alt="purple,black"/></div>
+                      <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-2.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-4.png' %}" onclick="select_color_set(this);" alt="lavender,white"/></div>
+                      <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-3.png' %}" onclick="select_color_set(this);" alt="khaki,black"/></div>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-3.png' %}" onclick="select_color_set(this);" alt="cream,white"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-3.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-3.png' %}" onclick="select_color_set(this);"  alt="pink,white"/></div>
+                      <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-3.png' %}" onclick="select_color_set(this);" alt="darkred,black"/></div>
+                      <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-3.png' %}" onclick="select_color_set(this);" alt="olive,white"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-4.png' %}" onclick="select_color_set(this);" alt="gray,white"/></div>
+                      <div><input type="image" class="유쾌한_two" src="{% static 'myapp/img/button/9-5.png' %}" onclick="select_color_set(this);" alt="yellow,black"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-3.png' %}" onclick="select_color_set(this);" alt="yellow,white"/></div>
+                      <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-3.png' %}" onclick="select_color_set(this);" alt="orange,red"/></div>
+                      <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-3.png' %}" onclick="select_color_set(this);" alt="redviolet,black"/></div>
+                      <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-3.png' %}" onclick="select_color_set(this);" alt="navy,white"/></div>
+                    </td></tr>
+
+                    <tr><td>
+                     <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-6.png' %}" onclick="select_color_set(this);" alt="lightpink,black"/></div>
+                     <div><input type="image" class="단정한_two" src="{% static 'myapp/img/button/2-4.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+                     <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-4.png' %}" onclick="select_color_set(this);" alt="mint,white"/></div>
+    
+                     <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-4.png' %}" onclick="select_color_set(this);" alt="gold,white"/></div>
+                     <div><input type="image" class="강인한_two" src="{% static 'myapp/img/button/6-4.png' %}" onclick="select_color_set(this);" alt="brown,black"/></div>
+                     <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-4.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+                     <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-5.png' %}" onclick="select_color_set(this);" alt="navy,gray"/></div>
+                     <div><input type="image" class="유쾌한_two" src="{% static 'myapp/img/button/9-6.png' %}" onclick="select_color_set(this);" alt="yellow,white"/></div>
+                     <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-4.png' %}" onclick="select_color_set(this);" alt="green,white"/></div>
+                     <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-4.png' %}" onclick="select_color_set(this);" alt="orange,black"/></div>
+                     <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-4.png' %}" onclick="select_color_set(this);" alt="green,black"/></div>
+                     <div><input type="image" class="늠름한_two" src="{% static 'myapp/img/button/13-4.png' %}" onclick="select_color_set(this);" alt="gray,white"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-7.png' %}" onclick="select_color_set(this);" alt="lightpink,black"/></div>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-5.png' %}" onclick="select_color_set(this);" alt="skyblue, white"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-5.png' %}" onclick="select_color_set(this);" alt="yellow,navy"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-5.png' %}" onclick="select_color_set(this);" alt="redviolet,black"/></div>
+                      <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-5.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-7.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-5.png' %}" onclick="select_color_set(this);" alt="yellow,green"/></div>
+                      <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-5.png' %}" onclick="select_color_set(this);" alt="yellow,orange"/></div>
+                      <div><input type="image" class="자극적인_two" src="{% static 'myapp/img/button/12-5.png' %}" onclick="select_color_set(this);" alt="redviolet,green"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="우아한_two" src="{% static 'myapp/img/button/1-9.png' %}" onclick="select_color_set(this);" alt="lavender,black"/></div>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-6.png' %}" onclick="select_color_set(this);" alt="mint,black"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-6.png' %}" onclick="select_color_set(this);" alt="red,navy"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-6.png' %}" onclick="select_color_set(this);" alt="purple,black"/></div>
+                      <div><input type="image" class="수수한_two" src="{% static 'myapp/img/button/7-6.png' %}" onclick="select_color_set(this);" alt="olive,black"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-9.png' %}" onclick="select_color_set(this);" alt="cream,black"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-6.png' %}" onclick="select_color_set(this);" alt="yellow,blue"/></div>
+                      <div><input type="image" class="역동적인_two" src="{% static 'myapp/img/button/11-6.png' %}" onclick="select_color_set(this);"  alt="yellow,red"/></div>   
+                    </td></tr>
+
+                    <tr><td>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-7.png' %}" onclick="select_color_set(this);" alt="skyblue,black"/></div>
+   
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-7.png' %}" onclick="select_color_set(this);" alt="pink,black"/></div>
+                      <div><input type="image" class="지적인_two" src="{% static 'myapp/img/button/8-10.png' %}" onclick="select_color_set(this);" alt="gray,black"/></div>
+                      <div><input type="image" class="캐주얼한_two" src="{% static 'myapp/img/button/10-7.png' %}" onclick="select_color_set(this);" alt="red,blue"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-8.png' %}" onclick="select_color_set(this);" alt="cream,black"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-8.png' %}" onclick="select_color_set(this);" alt="red,black"/></div>
+                      <div><input type="image" class="화려한_two" src="{% static 'myapp/img/button/5-8.png' %}" onclick="select_color_set(this);" alt="gold,black"/></div>
+                    </td>
+                    <td>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-9.png' %}" onclick="select_color_set(this);" alt="mint,black"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-9.png' %}" onclick="select_color_set(this);" alt="yellow,black"/></div>
+                    </td></tr>
+
+                    <tr><td>
+                      <div><input type="image" class="맑은_two" src="{% static 'myapp/img/button/3-10.png' %}" onclick="select_color_set(this);" alt="skyblue,black"/></div>
+                      <div><input type="image" class="스포티한_two" src="{% static 'myapp/img/button/4-10.png' %}" onclick="select_color_set(this);" alt="navy,black"/></div>
+                    </td>
+                    <td>
+    
+                    </td>
+                    <td>       
+                    </td></tr>
+                  </table>
+                </div>  
+            </td>
+            </tr>
+          </table>
        </div>
        <!-- 타이머 함수 -->                
-      <script type="text/javascript">            
-          var t = document.getElementById('captureBtn');
-          var video = document.querySelector('video'), canvas;                    
-         // 사진찍기 클릭 시 설정 시간 확인 후 사진 찍기
-         t.addEventListener('click',function(){
-            // 선택된 값 찾기
-             var sVal = document.getElementById('timerValue')
-             var strUser = sVal.options[sVal.selectedIndex].value;
-
-             // 타이머
-            if(strUser == '1') setTimeout(takeSnapshot, 100);
-            else if(strUser == '3') setTimeout(takeSnapshot, 3000);
-            else if(strUser == '5') setTimeout(takeSnapshot, 5000);
-            else if(strUser == '7') setTimeout(takeSnapshot, 7000);
-         })            
+      <script type="text/javascript"> 
+         var t = document.getElementById('captureBtn');
+         var video = document.querySelector('video'), canvas;                    
+        // 사진찍기 클릭 시 설정 시간 확인 후 사진 찍기
+        t.addEventListener('click',function(){
+           // 선택된 값 찾기
+           window.captureClicked = true;
+           var sVal = document.getElementById('timerValue')
+           var strUser = sVal.options[sVal.selectedIndex].value;
+           // 타이머
+           if(strUser == '1') setTimeout(takeSnapshot, 100);
+           else if(strUser == '3') setTimeout(takeSnapshot, 3000);
+           else if(strUser == '5') setTimeout(takeSnapshot, 5000);
+           else if(strUser == '7') setTimeout(takeSnapshot, 7000);
+        })        
       </script>       
     </section>
 
-    <script type="text/javascript">
-     var word_list = [
-       {text: "맑은", weight: 3.5},
-       {text: "지적인", weight: 2.5, html: {"class": "vertical"}},
-       {text: "화려한", weight: 2.5},
-       {text: "수수한", weight: 2.5, html: {"class": "vertical"}},
-       {text: "스포티한", weight: 2},
-       {text: "단정한", weight: 3},
-       {text: "우아한", weight: 3},
-       {text: "강인한", weight: 2, html: {"class": "vertical"}},
-     ];
-     $(function() {
-       $("#words").jQCloud(word_list);
-     });
-    </script>
+    <!-- WORD BOX -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $("input.우아한_two").hide();  //$("input.우아한_one").hide();;
+    $("input.단정한_two").hide();  //$("input.단정한_one").hide();;
+    $("input.맑은_two").hide();  //$("input.맑은_one").hide();;
+    $("input.스포티한_two").hide(); //$("input.스포티한_one").hide();;
+    $("input.화려한_two").hide();  //$("input.화려한_one").hide();;
+    $("input.강인한_two").hide();   //$("input.강인한_one").hide();;
+    $("input.수수한_two").hide();  //$("input.수수한_one").hide();;
+    $("input.지적인_two").hide();  //$("input.지적인_one").hide();;
+    $("input.유쾌한_two").hide();  //$("input.유쾌한_one").hide();;
+    $("input.캐주얼한_two").hide(); //$("input.캐주얼한_one").hide();;
+    $("input.역동적인_two").hide();; //$("input.역동적인_one").hide();;
+    $("input.자극적인_two").hide(); //$("input.자극적인_one").hide();;
+    $("input.늠름한_two").hide();  //$("input.늠름한_one").hide();;
+ });
 
-    <div id="words" style="width: 300px; height: 300px; border: 1px solid #ccc;"></div>
-    <script>      
-      // 비디오 스트리밍
-      'use strict';
-      var video = document.querySelector('video')
-      , canvas;
-      // use MediaDevices API
-      if (navigator.mediaDevices) {
-         // access the web cam
-         navigator.mediaDevices.getUserMedia({video: true})
-         // permission granted:
-         .then(function(stream) {
-            video.src = window.URL.createObjectURL(stream);
-         })
-         // permission denied:
-         .catch(function(error) {
-            document.body.textContent = 'Could not access the camera. Error: ' + error.name;
-         });
-      }      
-    </script>
+jQuery( document ).ready(function() {
+var word_list = [
+    {text: "단정한", weight: 13, color: "#ad8c76",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "지적인", weight: 10.5, html: {"class": "vertical"}, color: "#7c999c",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "화려한", weight: 10.5, color: "#bd156c",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "수수한", weight: 4, html: {"class": "vertical"}, color: "#d4c981",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "스포티한", weight: 6, color: "#142766",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "맑은", weight: 8, color: "#daeef0",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "우아한", weight: 8, color: "#f2c2d7",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "강인한", weight: 8, html: {"class": "vertical"}, color: "#753b0b",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "유쾌한", weight: 6, color: "#fad925",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "캐주얼한", weight: 8, color: "#43ae71",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "역동적인", weight: 6, html: {"class": "vertical"}, color: "#b81612",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "자극적인", weight: 6, color: "#84308e",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+    {text: "늠름한", weight: 3, html: {"class": "vertical"}, color: "#183276",
+       handlers : {click: function() { change_color_button(jQuery(this).text()); }}},
+  ];
+
+    // 크기를 여기서 함수의 2번째 파라매터로 넘겨줄수 있지만
+    // 그럴 경우 처음에 박스가 직선으로 나온 후 지정한 크기로 바뀜 - 안예뻐서 
+    jQuery('#words').jQCloud(word_list, {
+     fontSize : { from: 0.1,  to: 0.05  }
+    });
     
-    <script type="text/javascript">
-       // 캔버스 드로잉
-       var canvas, ctx, flag = false,
-           prevX = 0,
-           currX = 0,
-           prevY = 0,
-           currY = 0,
-           dot_flag = false;
+});
 
-       // 옷 컬러 선택 단계 확인
-       var checkTop = false;
-       var checkBtm = false;
-       var pickTop = false;
-       var pickBtm = false;
-       // 컬러 픽 버튼
-       var pBtn = document.getElementById('pickEndBtn');
+<!-- COLOR BOX -->
+var mood_list = [
+  {text: "우아한", state: "0"},  {text: "단정한", state: "0"},  {text: "맑은", state: "0"},
+  {text: "스포티한", state: "0"},  {text: "화려한", state: "0"}, {text: "강인한", state: "0"},
+  {text: "수수한", state: "0"},  {text: "지적인", state: "0"},  {text: "유쾌한", state: "0"},
+  {text: "캐주얼한", state: "0"}, {text: "역동적인", state: "0"}, {text: "자극적인", state: "0"},
+  {text: "늠름한", state: "0"},
+]
 
-       var x = "green",
-           y = 3;
-       
-       function init() {
-           canvas = document.getElementById('can');
-           ctx = canvas.getContext("2d");
-           w = canvas.width;
-           h = canvas.height;
-       
-           canvas.addEventListener("mousemove", function (e) {
-               findxy('move', e)
-           }, false);
-           canvas.addEventListener("mousedown", function (e) {
-               findxy('down', e)
-           }, false);
-           canvas.addEventListener("mouseup", function (e) {
-               findxy('up', e)
-           }, false);
-           canvas.addEventListener("mouseout", function (e) {
-               findxy('out', e)
-           }, false);
+var previous;
+var next;
+var first = 0;// 맨 처음 불려졌을 때
+var previous_color;// 이전에 선택된 색
+var keyword_color1=null, keyword_color2=null; // python으로 넘어가는 
 
-         minican = document.getElementById('can');
-         minican.width = 30;
-         minican.height = 30;
-         minictx = minican.getContext("2d");
+function change_color_button(el){
+  var i;
+  for(i = 0; i<mood_list.length; i++){
+    if(mood_list[i].text == el){
+      next = i;
+      selected_color = "input." + mood_list[next].text;
 
-         minican2 = document.getElementById('can');
-         minican2.width = 30;
-         minican2.height = 30;
-         minictx2 = minican2.getContext("2d");
+      if(first == 0){
+          $(selected_color+"_two").show("slow");
+          mood_list[next].state = 1;
+          previous = next;
+          previous_color = selected_color;
+          first = 1;   
+      }else{
+          $(previous_color+"_two").hide("fast");
+          $(selected_color+"_two").show("slow");
+    
+        mood_list[next].state = 1;
+        previous = next;
+        previous_color = selected_color;
+      }
+      break;
+    }
+  }
+}
+// 색 조합 선택과 선택하면 crawling에 넘겨줄 키워드가 바뀌고 DESIGN BOX에 배경에 바뀜
+function select_color_set(el){
+  // 버튼 이미지 이름 추출
+  var btn_name=el.src;
+  btn_name=btn_name.split('/'); btn_name=btn_name[btn_name.length-1].split('.');
 
-         pBtn.disabled = 'true';
+  // 버튼 조합에 맞는 색 추출 
+  var color_set = el.alt;
+  color_set = color_set.split(',');
+  keyword_color1 = color_set[0]; keyword_color2 = color_set[1];
+  // alert(keyword_color1 + "  " + keyword_color2); // 선택한 색상 보기
+}
 
+// python으로 넘겨줄 crawling 검색어로 value 바꿔주는 함수
+function throw_keyword(){
+  $("button[type=submit][name=color_set]").val(keyword_color1+","+keyword_color2);
+}
+</script>
+
+<script>      
+  // 비디오 스트리밍
+  'use strict';
+  var video = document.querySelector('video')
+  , canvas;
+  // use MediaDevices API
+  if (navigator.mediaDevices) {
+     // access the web cam
+     navigator.mediaDevices.getUserMedia({video: true})
+     // permission granted:
+     .then(function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+     })
+     // permission denied:
+     .catch(function(error) {
+        document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+     });
+  }      
+</script>
+
+<script type="text/javascript">
+   // 캔버스 드로잉
+   var canvas, ctx, flag = false,
+       prevX = 0,
+       currX = 0,
+       prevY = 0,
+       currY = 0,
+       dot_flag = false;
+
+   // 옷 컬러 선택 단계 확인
+   var pickTop = false;
+   var pickBtm = false;
+
+   var x = "green",
+       y = 8;
+   
+   function init() {
+       canvas = document.getElementById('can');
+       ctx = canvas.getContext("2d");
+       w = canvas.width;
+       h = canvas.height;
+   
+       canvas.addEventListener("mousemove", function (e) {
+           findxy('move', e)
+       }, false);
+       canvas.addEventListener("mousedown", function (e) {
+           findxy('down', e)
+       }, false);
+       canvas.addEventListener("mouseup", function (e) {
+           findxy('up', e)
+       }, false);
+       canvas.addEventListener("mouseout", function (e) {
+           findxy('out', e)
+       }, false);
+
+     minican = document.getElementById('can');
+     minican.width = 30;
+     minican.height = 30;
+     minictx = minican.getContext("2d");
+
+     minican2 = document.getElementById('can');
+     minican2.width = 30;
+     minican2.height = 30;
+     minictx2 = minican2.getContext("2d");
+   }
+   
+   function color(obj) {
+       switch (obj.id) {
+           case "green":
+               x = "green";
+               break;
        }
-       
-       function color(obj) {
-           switch (obj.id) {
-               case "green":
-                   x = "green";
-                   break;
-               case "yellow":
-                   x = "yellow";
-                   break;
-               /*case "white":
-                   x = "white";
-                   break;*/
+   }   
+   function draw() {
+       ctx.beginPath();
+       ctx.moveTo(prevX, prevY);
+       ctx.lineTo(currX, currY);
+       ctx.strokeStyle = x;
+       ctx.lineWidth = y;
+       ctx.stroke();
+       ctx.closePath();
+   }       
+   
+   function save() {
+       document.getElementById("canvasimg").style.border = "2px solid";
+       var dataURL = canvas.toDataURL();           
+       document.getElementById("canvasimg").src = dataURL;
+       document.getElementById("canvasimg").style.display = "inline";
+   }
+
+   // initialize mouse position to make closed curve
+   var initX = 0;
+   var initY = 0;     
+   var checkLine = false;
+   function findxy(res, e) { //그리기        
+       if (res == 'down') {
+           window.boundaryDrawed = true;
+           prevX = currX;
+           prevY = currY;
+           currX = event.offsetX
+           currY = event.offsetY
+           var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
+           flag = true;
+           dot_flag = true;
+           if (dot_flag) {
+               ctx.beginPath();
+               ctx.fillStyle = x;
+               ctx.lineCap = "round"
+               ctx.fillRect(currX, currY, 8, 8);
+               ctx.closePath();
+               dot_flag = false;
            }
-           //if (x == "white") y = 14;
-           //else y = 2;
-          y = 3;
-       }
-       
-       function draw() {
-           ctx.beginPath();
-           ctx.moveTo(prevX, prevY);
-           ctx.lineTo(currX, currY);
-           ctx.strokeStyle = x;
-           ctx.lineWidth = y;
-           ctx.stroke();
-           ctx.closePath();
-       }
-       
-       function erase() {
-           var m = confirm("지우시겠습니까?");
-           if (m) {
-               ctx.clearRect(0, 0, w, h);
-               document.getElementById("canvasimg").style.display = "none";
+           if(initX == 0 && initY == 0){
+              initX = currX;
+              initY = currY;
            }
-       }
-       
-       function save() {
-           document.getElementById("canvasimg").style.border = "2px solid";
-           var dataURL = canvas.toDataURL();
-           document.getElementById("canvasimg").src = dataURL;
-           document.getElementById("canvasimg").style.display = "inline";
-       }
-
-       // initialize mouse position to make closed curve
-       var initX = 0;
-       var initY = 0;     
-
-       function findxy(res, e) {
-           if (res == 'down') {
-               prevX = currX;
-               prevY = currY;
-               currX = e.clientX - canvas.offsetLeft;
-               currY = e.clientY - canvas.offsetTop;
-              
-               flag = true;
-               dot_flag = true;
-               if (dot_flag) {
-                   ctx.beginPath();
-                   ctx.fillStyle = x;
-                   ctx.fillRect(currX, currY, 3, 3);
-                   ctx.closePath();
-                   dot_flag = false;
-               }
-               if(initX == 0 && initY == 0){
-                  initX = currX;
-                  initY = currY;
-               }
-               var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
-               console.log(pixelData)
-
-               // show picked color
-               if(pickTop){
-                  minictx.beginPath();
-                  minictx.fillStyle = 'rgb('+
-                   pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
-                  minictx.fillRect(10,10,20,20);
-                  minictx.closePath();
-                  pickTop = false;
-                  pickBtm = true;
-                 }
-               else if(pickBtm){
-                 minictx2.beginPath();
-                 minictx2.fillStyle = 'rgb('+
-                  pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
-                 minictx2.fillRect(10,30,20,20);
-                 minictx2.closePath();
-                 pickBtm = false;
-
-               }
-
-           }        
-           else if (res == 'up') {
-             ctx.beginPath();
-             ctx.moveTo(currX, currY);
-             ctx.lineTo(initX, initY);
-             ctx.stroke();
-
-             // initialize position
-             initX = 0;
-             initY = 0;
-             flag = false;
-
-             // 상하의 영역 그리기 끝났을 시 컬러 피커 버튼 활성화             
-             if(x == "green") { 
-                checkTop = true; 
-                console.log("top check");
-             }
-             else if(x == "yellow") { 
-                checkBtm = true; 
-                console.log("bottom check"); 
-             }
-
-             if(checkTop && checkBtm){ // 둘 다 그렸을 시
-                pBtn.removeAttribute("disabled"); // 버튼 활성화
-                pickTop = true;
-                checkTop = checkBtm = false;
-             }
-
+           // show picked color
+           if(pickBtm){
+             window.clothClicked = true;
+             console.log('pickBtm', pickBtm)
+             minictx2.beginPath();
+             minictx2.fillStyle = 'rgb('+
+              pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+             minictx2.fillRect(10,30,20,20);
+             minictx2.closePath();
+             window.btmUrl = ',' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] // 하의 rgb값
+             pickBtm = false;
+             console.log(window.urlVal)
            }
-           else if (res == "out") {
-             flag = false;
-           }
-           else if (res == 'move') {
-             if (flag) {
-               prevX = currX;
-               prevY = currY;
-               currX = e.clientX - canvas.offsetLeft;
-               currY = e.clientY - canvas.offsetTop;
-               draw();
-             }
-           }
+           else if(pickTop){
+              minictx.beginPath();
+              minictx.fillStyle = 'rgb('+
+               pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+              minictx.fillRect(10,10,20,20);
+              minictx.closePath();
+              window.topUrl = ',' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] // 상의 rgb값
+              pickTop = false;
+              pickBtm = true;
+              console.log('pickTop', pickTop)                  
+            }
+       }        
+       else if (res == 'up') {
+         // initialize position
+         initX = 0;
+         initY = 0;
+         flag = false;
+
+         // 상하의 영역 그리기 끝났을 시 컬러 피커 버튼 활성화             
+         if(!checkLine) { 
+            checkLine = true; 
+            canvas = document.getElementById('can');
+            console.log('짠')
+            var resultImg = canvas.toDataURL("image/png"); //캔버스 데이터 url
+         }
+         if(checkLine){ // 경계 라인 그렸을 시 << 여기 else if로 걸면 안 됨.
+            pickTop = true;               
+         }
+
        }
-    </script>
+       else if (res == "out") {
+         flag = false;
+       }
+       else if (res == 'move') {
+         if (flag) {
+           prevX = currX;
+           prevY = currY;
+           currX = event.offsetX
+           currY = event.offsetY
+           draw();
+         }
+       }
+   }
+</script> 
+  <footer> <!-- 하늘색 줄 -->
+  </footer>
 </body>
 </html>
