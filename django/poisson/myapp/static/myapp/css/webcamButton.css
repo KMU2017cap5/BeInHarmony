@@ -1,0 +1,43 @@
+html,body{
+  height:100%;
+}
+body{
+  text-align:center;
+}
+
+.button{
+  background:#FFFFFF;
+  color:#C3C3C3;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:0.8em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.button:hover{
+  background:#fff;
+  color:#C3C3C3;
+}
+.button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #C3C3C3;
+  transition:400ms ease all;
+}
+.button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

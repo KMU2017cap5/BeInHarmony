@@ -1,0 +1,235 @@
+  /* Slide Button*/
+/* Caption*/
+  .flex-caption {
+    width: 100%; padding: 2%;  left: 0; bottom: 0;
+    background: rgba(0,0,0,.5); color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+    font-size: 12px;  line-height: 18px;
+    margin-top: -5px;
+  }
+
+/* slide size*/
+.flexslider {
+  text-align: center;
+  /*width:  150px;  height: 190px;*/
+  width:  140px;  height: 165px;}
+
+/* 없으면 슬라이드 생길때, 없어질 때 버튼 위치가 달라짐*/
+#slider_top{
+  position: relative;  left: 0px; top: 0px; margin: 0; }
+
+#slider_bottom{
+  position: relative;  left: 0px; top: 0px; margin: 0;}
+
+#slider_outerwear{
+  position: relative;  left: 0px; top:  0px;  margin: 0;}
+
+#slider_dress{
+  position: relative;  left: 0px; top:  0px;  margin: 0;}
+
+/* slide direction button*/
+.flex-direction-nav a { 
+   width: 30px; height: 30px; margin: -20px 0 0; display: block; 
+   background: url(/static/myapp/img/bg_direction_nav.png) no-repeat 0 0; 
+   position: absolute; top: 50%; z-index: 10; cursor: pointer; 
+}
+
+/* Button - TOP, BOTTOM, OUTER WEAR, DRESS */
+.btn{
+   position:relative; left: 30px;   top : -20px; 
+   width: 120px;  height:120px; }
+
+/* 선택한 디자인 python으로 넘겨주려고 input type으로 바꿈 */
+input{
+  border: none;
+  background-color: white;
+  outline: 0;
+}
+
+.slide_img{
+  width: 130px;
+  height: 135px;
+
+}
+
+/* Word cloud */
+div.jqcloud span.vertical {
+-webkit-writing-mode: vertical-rl;
+writing-mode: tb-rl;
+}
+
+/*#word_box{
+    position: relative;  */
+    /*left: 350px;*/ 
+    /*top:   -745px;*/
+/*}*/
+
+#category{
+  border: none;
+  width:  1160px; 
+  height: 760px; 
+}
+
+#category tr{
+  /* 없으면 줄 번갈아 가면서 색들어감 + 슬라이스를 누르면 높이가 계속 바뀜*/
+/*border: 1px solid green;*/
+border: none;
+height: 190px;
+background-color: white;
+}
+
+#category td{ 
+  border: none;
+  /*border: 1px solid black;*/
+}
+
+#category_width{
+  /*border: 1px solid blue;*/
+  border: none;
+  width:  165px;
+}
+
+#slide_width{
+  /*border: 1px solid green;*/
+  border: none;
+  width: 165px;
+}
+
+/* COLOR BOX*/
+#color_box_two_color{
+  /*border: 1px solid red;*/
+  margin-top: -100px;
+  /*height: 300px;*/
+  height: auto;
+  border: none;
+
+}
+#color_box_two_color tr{
+  background-color: white;
+  height: auto;
+  /*max-height: 20px;*/
+  overflow: hidden;
+}
+
+#color_box_two_color td{
+  max-width: 20px;
+  height: 70px;
+  /*border: 1px solid red;*/
+  border: none;
+}
+
+/* color_img겹치려고 만듦*/
+#color_box_two_color div{
+  position: relative;
+}
+
+
+#color_box_two_color input{
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 6px;
+  
+}
+
+#color_box_one_color{
+  /*border: 1px solid green;*/
+  margin-top: -280px;
+  /*height: 300px;*/
+  height: auto;
+  border: none;
+
+}
+#color_box_one_color tr{
+  background-color: white;
+  height: auto;
+  /*max-height: 20px;*/
+  overflow: hidden;
+  border: none;
+}
+
+#color_box_one_color td{
+  max-width: 20px;
+  height: 70px;
+  /*border: 1px solid green;*/
+ 
+}
+
+/* color_img겹치려고 만듦*/
+#color_box_one_color div{
+  position: relative;
+}
+
+
+#color_box_one_color input{
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 30px
+}
+
+/*design_box - 선택한 옷 디자인 이미지를 출력*/
+.design_box{
+  width: 380px; height: 550px;
+  border: 1px solid #d3d3d3;
+}
+
+.design_box p{
+  text-align: center;
+}
+
+#design_top_box{
+  /*border: 1px solid #d3d3d3;*/
+  width: 200px; height: 220px;
+  margin:auto;  margin-top: 50px;
+}
+
+.design_top_box div{
+  position: relative;
+}
+
+.design_top_box img{
+  position: absolute;
+}
+
+#design_outerwear_box{
+  /*border: 1px solid green;*/
+  width: 200px; height: 220px;
+  margin:auto;  margin-top: -220px;
+}
+
+.design_outerwear_box div{
+  position: relative;
+}
+
+.design_outerwear_box img{
+  position: absolute;
+}
+#design_bottom_box{
+  /*border: 1px solid red;*/
+  width: 200px; height: 220px;
+  margin:auto;  margin-top: 0px
+}
+
+.design_bottom_box div{
+  position: relative;
+}
+
+.design_bottom_box img{
+  position: absolute;
+}
+
+#design_dress_box{
+  border: 1px solid #d3d3d3;
+  width: 200px; height: 300px;
+  margin:auto;  margin-top: -380px;
+
+}
+
+.design_dress_box div{
+  position: relative;
+}
+
+.design_dress_box img{
+  position: absolute;
+  margin-top: 50px;
+}
+
